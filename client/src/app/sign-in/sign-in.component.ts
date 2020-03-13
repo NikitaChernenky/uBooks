@@ -26,8 +26,6 @@ export class SignInComponent implements OnInit {
   /* Perform component initialization. */
   ngOnInit() {
     this.fetchData();
-    this.data.Email = "fisher@gmail.com";
-    this.data.Password = "password3";
   }
 
   /* Load data using services. */

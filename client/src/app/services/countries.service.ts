@@ -19,26 +19,26 @@ export class CountriesService {
 
   /* Load all countries data. */
   getAllCountries(): Observable<Countries[]> {
-    return this.http.get<Countries[]>('http://localhost:3000/countries/');
+    return this.http.get<Countries[]>('/countries/');
   }
 
   /* Load data by country id. */
   getCountryByID(id: number): Observable<Countries> {
-    return this.http.get<Countries>('http://localhost:3000/countries/' + id);
+    return this.http.get<Countries>('/countries/' + id);
   }
 
   /* Writing data to a table. */
   insertCountry(country: Countries): Observable<Countries> {
-    return this.http.post<Countries>('http://localhost:3000/countries/create', country);
+    return this.http.post<Countries>('/countries/create', country);
   }
 
   /* Updating table data. */
   updateCountry(country: Countries): Observable<void> {
-    return this.http.put<void>('http://localhost:3000/countries/update/', country);
+    return this.http.put<void>('/countries/update/', country);
   }
 
   /* Delete table data. */
   deleteCountry(id: number) {
-    return this.http.delete('http://localhost:3000/countries/delete/' + id);
+    return this.http.delete('/countries/delete/' + id);
   }
 }
