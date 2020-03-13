@@ -1,0 +1,101 @@
+.title,
+.add-form,
+.update-form {
+  margin: 70px auto 0 auto;
+}
+
+.add-form,
+.update-form {
+  width: 550px;
+}
+
+.title {
+  width: 1110px;
+}
+
+h2 {
+  font-weight: 200;
+  color: rgb(60, 60, 60);
+}
+
+.add-new {
+  background-color: rgb(251, 116, 24);
+  font-weight: 200;
+  padding-right: 40px;
+  padding-left: 40px;
+  margin-left: 204px;
+  border: none;
+}
+
+.add-new:hover,
+.add-new:focus,
+.reset:hover,
+.reset:focus,
+.reset1:hover,
+.reset1:focus,
+button[type="submit"]:hover,
+button[type="submit"]:focus {
+  border-color: inherit;
+  box-shadow: none;
+  background-color: #ff4800 !important;
+}
+
+.col-sm-4 {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.fa-pencil,
+.fa-trash {
+  margin: 0 15px 0 15px;
+}
+
+.fa-trash:hover {
+  color: red;
+}
+
+.fa-pencil:hover {
+  color: rgb(251, 116, 24);
+}
+
+.reset,
+button[type="submit"] {
+  width: 49%;
+}
+
+.reset {
+  margin-left: 8px;
+  background-color: rgb(251, 116, 24);
+  border: none;
+}
+
+button[type="submit"] {
+  background-color: rgb(251, 116, 24);
+  border: none;
+}
+
+.reset1 {
+  width: 100%;
+  margin-left: 0;
+  background-color: rgb(251, 116, 24);
+  border: none;
+}
+
+.shopping-cart {
+  margin-top: 20px;
+}
+
+.row {
+  margin-top: 23px;
+}
+
+input#bookcover {
+  width: 40%;
+  margin-right: 18px;
+  display: inline-block;
+}
+
+input[type="file"] {
+  width: 56%;
+  display: inline-block;
+}

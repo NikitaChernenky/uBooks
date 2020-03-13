@@ -1,0 +1,154 @@
+<!-- Customer's page navbar -->
+<app-customer-header [cartquantity]="cartquantity"></app-customer-header>
+
+<!-- Data filtering block. -->
+<div class="container">
+  <!-- Filter books by book genres. -->
+  <div class="control-group">
+    <div class="d-inline-block">
+      <fieldset class="scheduler-border genresfilter">
+        <legend class="scheduler-border bookgenres-legend">Book genres</legend>
+        <div class="control-group">
+          <label *ngFor="let genre of bookgenres" class="form-check-label move-right">
+            <input [(ngModel)]="genre.checked" type="checkbox" value={{genre.BookGenreID}}>{{genre.BookGenre}}
+          </label>
+        </div>
+      </fieldset>
+    </div>
+
+    <!-- Filter books by book's price. -->
+    <div class="d-inline-block">
+      <fieldset class="scheduler-border fieldset-height pricefilter">
+        <legend class="scheduler-border price-legend">Price</legend>
+        <div class="control-group">
+          <label for="pricefrom" style="margin-left:15px;">From:</label>
+          <input autocomplete="off" min={{pricefrommin}} max={{pricetomax}} type="number" id="pricefrom"
+            name="pricefrom" [(ngModel)]="pricefrom" class="form-control mb-4 d-inline-block from" placeholder="From"
+            step="0.1">
+          <label for="priceto" style="margin-left:15px;">To:</label>
+          <input autocomplete="off" min={{pricefrommin}} max={{pricetomax}} type="number" id="priceto" name="priceto"
+            step="0.1" [(ngModel)]="priceto" class="form-control mb-4 d-inline-block to" placeholder="To">
+        </div>
+      </fieldset>
+    </div>
+
+    <!-- Confirm & Reset data filtering operation. -->
+    <div class="filter-buttons">
+      <a title="Filter" (click)="resetFilter()" class="btn btn-info btn2 float-right">Reset <i
+          class="fa fa-times"></i></a>
+      <a title="Filter" (click)="filter()" class="btn btn-info btn1 float-right">Filter <i class="fa fa-filter"></i></a>
+    </div>
+  </div>
+</div>
+
+<div class="row font-weight-light" style="width: 1085px; margin: 50px auto 0px auto;">
+  <!-- Title. -->
+  <div class="col-sm-4">
+    <h2 style="color: rgb(60, 60, 60);">Book
+      <b style="color: rgb(251, 116, 24); text-shadow: 3px 1px 4px rgba(150, 150, 150, 1);">List</b></h2>
+  </div>
+
+  <!-- Book search. -->
+  <div class="col-sm-4">
+    <div class="input-group">
+      <!-- Search field. -->
+      <input autocomplete="off" type="text" id="search" name="search" placeholder="Search by title or author.."
+        [(ngModel)]="searchText" class="form-control" required="required" minlength="1" maxlength="50">
+      <!-- Search books by book's title or book's author. -->
+      <button (click)="searchBook()" class="btn btn-primary" style="width: 40px; font-size: 15px;"><i
+          class="fa fa-search" aria-hidden="true"></i></button>
+      <!-- Reset search results. Show all books. -->
+      <button (click)="resetSearch()" class="btn btn-primary" style="width: 40px; font-size: 15px;"><i
+          class="fa fa-times" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <!-- Select a sort type from the drop-down list. -->
+  <div class="col-sm-4">
+    <select class="custom-select sorting-type" [(ngModel)]="sortingType" (change)="changeSort()">
+      <option selected value="0">Without sorting</option>
+      <option value="1">Price from MIN to MAX</option>
+      <option value="2">Price from MAX to MIN</option>
+    </select>
+  </div>
+</div>
+
+<!-- Books list. -->
+<div class="container">
+  <div class="row">
+    <!-- Getting each record with a loop. -->
+    <div class="col-md-4" *ngFor="let book of books">
+      <!-- Book's info. -->
+      <figure class="card card-product-grid card-lg"> <a class="img-wrap" data-abc="true"><img
+            src={{book.BookCover}}></a>
+        <!-- Show book's title and author. -->
+        <figcaption class="info-wrap">
+          <div class="row">
+            <div class="col-md-8">
+              <a class="title" data-abc="true">{{book.BookTitle}}</a>
+              <a class="title" data-abc="true"><span style="font-weight: normal;">By</span> {{book.BookAuthor}}</a>
+              <a *ngIf="book.AdminRole != true" class="title" data-abc="true" style="font-size: 14px; margin-top: 8px;">
+                <span style="font-weight: normal;">Selling by</span> {{book.Name}} {{book.Surname}}
+              </a>
+              <a *ngIf="book.AdminRole == true" class="title" data-abc="true" style="font-size: 14px; margin-top: 8px;">
+                <span style="font-weight: normal;">Selling by</span> Book Store
+              </a>
+            </div>
+          </div>
+        </figcaption>
+        <div class="bottom-wrap">
+          <!-- Add the book to customer's cart. -->
+          <a class="btn btn-primary float-right" data-abc="true" (click)="addBookToCart(book.BookID);"
+            *ngIf="book.Quantity > 0">
+            <i class="fa fa-cart-plus" aria-hidden="true"></i>
+          </a>
+          <!-- Show book's details using modal window. -->
+          <a class="btn btn-primary float-right" data-abc="true" data-toggle="modal" data-target="#basicModal"
+            (click)="showBookDetails(book.BookID);">
+            <i class="fa fa-eye" aria-hidden="true"></i>
+          </a>
+          <!-- Show book's price. -->
+          <div class="price-wrap"> <span class="price h5">${{book.Price}}</span>
+            <br>
+            <!-- Show if the book is in stock. -->
+            <small *ngIf="book.Quantity > 0" class="text-success">Free shipping</small>
+            <small *ngIf="book.Quantity == 0" class="text-danger">Not in stock.</small>
+          </div>
+        </div>
+      </figure>
+    </div>
+  </div>
+</div>
+
+<!-- Modal window with book's details. -->
+<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">{{booksdetails.BookTitle}}</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="card flex-row flex-wrap">
+          <div class="card-header border-0">
+            <img src={{booksdetails.BookCover}} alt="" style="float: left; width: 305px;">
+          </div>
+          <div class="card-block px-2" style="width: 800px; float: right;">
+            <h4 class="card-title"><b>Title:</b> {{booksdetails.BookTitle}}</h4>
+            <h4 class="card-title"><b>Author:</b> {{booksdetails.BookAuthor}}</h4>
+            <h4 class="card-title"><b>Genre:</b> {{booksdetails.BookGenre}}</h4>
+            <h4 class="card-title"><b>Publication year:</b> {{booksdetails.PublicationYear}}</h4>
+            <h4 class="card-title"><b>Price:</b> ${{booksdetails.Price}}</h4>
+            <h4 class="card-title" style="text-align: justify;"><b>Overview:</b> {{booksdetails.BookOverview}}</h4>
+          </div>
+          <div class="w-100"></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" style="width: 160px;">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

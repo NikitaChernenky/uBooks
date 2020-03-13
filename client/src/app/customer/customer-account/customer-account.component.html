@@ -1,0 +1,34 @@
+<!-- Customer's page navbar -->
+<app-customer-header></app-customer-header>
+
+<!-- Form for updating customer's data. -->
+<form *ngIf="saved == false" autocomplete="off" class="update-form text-center border border-light p-5"
+  (ngSubmit)="updateCustomer();" name="update-form">
+  <h2>Edit personal data</h2>
+  <input type="text" id="name" name="name" [(ngModel)]="changingData.Name" class="form-control mb-4" placeholder="Name">
+  <input type="text" id="surname" name="surname" [(ngModel)]="changingData.Surname" class="form-control mb-4"
+    placeholder="Surname">
+  <select class="custom-select mb-4" [(ngModel)]="changingData.CountryID" name="selectedCountry">
+    <option selected disabled value="none">Select country...</option>
+    <option *ngFor="let country of countries" value={{country.CountryID}}>{{country.CountryName}}
+      ({{country.CountryCode}})</option>
+  </select>
+  <input type="text" id="phonenumber" name="phonenumber" [(ngModel)]="changingData.PhoneNumber"
+    class="form-control mb-4" placeholder="Phone number">
+  <input type="text" id="cardnumber" name="cardnumber" min="16" max="16" [(ngModel)]="changingData.CardNumber"
+    class="form-control mb-4" placeholder="Card number: 0000 0000 0000 0000">
+  <input type="text" id="email" name="email" [(ngModel)]="changingData.Email" class="form-control mb-4"
+    placeholder="Email: example@mail.com">
+  <input type="text" id="password" name="password" [(ngModel)]="changingData.Password" class="form-control mb-4"
+    placeholder="Password">
+  <button class="btn btn-info" type="submit"
+    *ngIf="selectedCountry != 'none' && changingData.PhoneNumber && changingData.Email && changingData.Password && changingData.Name && changingData.Surname">Save</button>
+  <button class="btn btn-info reset" (click)="undoChanges(); setActiveLink('books');"
+    [ngClass]="{'reset1': !(selectedCountry != 'none' && changingData.PhoneNumber && changingData.Email && changingData.Password && changingData.Name && changingData.Surname)}"><i
+      class="fa fa-times"></i></button>
+</form>
+
+<!-- Show msg if changes were saved. -->
+<div *ngIf="saved == true" class="alert alert-success" role="alert">
+  Changes saved!
+</div>

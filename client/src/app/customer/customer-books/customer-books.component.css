@@ -1,0 +1,260 @@
+body {
+  background-color: #eeeeee
+}
+
+.container {
+  margin-top: 0px;
+  margin-bottom: 50px
+}
+
+a {
+  text-decoration: none !important
+}
+
+.card-product-list,
+.card-product-grid {
+  margin-bottom: 0
+}
+
+.card {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0.10rem;
+  margin-top: 10px
+}
+
+.card-product-grid:hover {
+  -webkit-box-shadow: 0 4px 15px rgba(153, 153, 153, 0.3);
+  box-shadow: 0 4px 15px rgba(153, 153, 153, 0.3);
+  -webkit-transition: .3s;
+  transition: .3s
+}
+
+.card-product-grid .img-wrap {
+  border-radius: 0.2rem 0.2rem 0 0;
+  height: 220px
+}
+
+.card .img-wrap {
+  overflow: hidden
+}
+
+.card-lg .img-wrap {
+  height: 280px
+}
+
+.card-product-grid .img-wrap {
+  border-radius: 0.2rem 0.2rem 0 0;
+  height: 490px;
+  padding: 16px
+}
+
+[class*='card-product'] .img-wrap img {
+  height: 100%;
+  max-width: 100%;
+  width: auto;
+  display: inline-block;
+  -o-object-fit: cover;
+  object-fit: cover
+}
+
+.img-wrap {
+  text-align: center;
+  display: block
+}
+
+.card-product-grid .info-wrap {
+  overflow: hidden;
+  padding: 18px 20px;
+  height: 135px !important;
+}
+
+[class*='card-product'] a.title {
+  color: #212529;
+  display: block
+}
+
+.card-product-grid .bottom-wrap {
+  padding: 18px;
+  border-top: 1px solid #e4e4e4;
+  border-bottom: 1px solid #ff3700;
+}
+
+.btn {
+  display: inline-block;
+  font-weight: 600;
+  color: #343a40;
+  text-align: center;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: 0.45rem 0.85rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.2rem
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: rgb(251, 116, 24);
+  margin-left: 11px;
+  width: 50px;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  border-color: inherit;
+  box-shadow: none;
+  background-color: #ff4800 !important;
+}
+
+.fa {
+  color: #FFF;
+}
+
+a.title {
+  font-weight: 500;
+  font-size: 20px;
+  width: 330px;
+}
+
+.modal {
+  text-align: justify;
+  padding-right: 700px !important;
+}
+
+.modal-content,
+.modal-header,
+.modal-body,
+.modal-footer {
+  width: 1200px;
+}
+
+h2 {
+  font-size: 40px;
+  font-weight: 300;
+  margin-top: -7px;
+}
+
+.sorting-type {
+  width: 305px;
+  margin-left: 32px;
+  transition-delay: 1s;
+}
+
+.sorting-type:hover {
+  border-color: rgb(251, 116, 24);
+  background: linear-gradient(to bottom, #ff3300, #f7b733);
+  color: #fff;
+}
+
+option {
+  color: #ff3300;
+}
+
+fieldset.scheduler-border {
+  border: 1px groove #ddd !important;
+  padding: 0 1.4em 1.4em 1.4em !important;
+  margin: 30px auto 10px auto !important;
+  box-shadow: 0px 0px 0px 0px #000;
+  width: 1058px;
+}
+
+legend.scheduler-border {
+  padding: 0 10px;
+  border-bottom: none;
+}
+
+.bookgenres-legend {
+  width: 190px;
+}
+
+.from,
+.to {
+  width: 130px;
+  margin-right: 0;
+  padding-bottom: 0;
+}
+
+.from {
+  margin-left: 42px;
+}
+
+.to {
+  margin-left: 20px;
+}
+
+.fieldset-height {
+  height: 105px;
+}
+
+.btn-info {
+  background-color: #ff4b00;
+  border: none;
+}
+
+.btn1 {
+  margin-left: 124px;
+}
+
+.btn2 {
+  margin-left: 15px;
+}
+
+.btn1,
+.btn2 {
+  color: #fff !important;
+  width: 145px;
+  height: 40px;
+  text-align: center;
+}
+
+.btn-info:hover,
+.btn-info:focus {
+  background-color: #ff3300 !important;
+}
+
+.d-inline-block {
+  margin-left: 31px;
+}
+
+.price-legend {
+  width: 74px;
+}
+
+.scheduler-border .bookgenres-legend {
+  width: 155px;
+}
+
+label.form-check-label.move-right {
+  width: 252px;
+}
+
+input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.pricefilter {
+  margin-top: 0px !important;
+}
+
+.filter-buttons {
+  width: 1090px;
+  margin: 10px 0 20px 0;
+  padding-bottom: 40px;
+}

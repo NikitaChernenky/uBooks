@@ -1,0 +1,29 @@
+{
+  "name": "back-end",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "mysql": "^2.16.0",
+    "nodemon": "^1.18.11"
+  },
+  "engines": {
+    "node": "12.16.1",
+    "npm": "6.13.4"
+  },
+  "devDependencies": {
+    "concurrently": "5.1.0"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "build": "npm install && cd client && npm install && npm run build --prod",
+    "client": "npm run start --prefix client",
+    "start:dev": "concurrently --kill-others \"npm run server\" \"npm run client\""
+  },
+  "author": "",
+  "license": "ISC"
+
+}

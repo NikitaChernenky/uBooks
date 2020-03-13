@@ -1,0 +1,29 @@
+.nav-bk8 {
+  background: linear-gradient(to left, #ff3700, #f7b733);
+}
+
+.nav-link {
+  color: rgb(255, 255, 255) !important;
+}
+
+a {
+  margin: 0 10px 0 10px !important;
+}
+
+a:hover {
+  color: rgb(255, 209, 172) !important;
+}
+
+.logo {
+  width: 150px;
+  margin: 0;
+  padding: 0;
+}
+
+.active {
+  border-bottom: 2px solid #fff;
+}
+
+.active:hover {
+  border-color: rgb(255, 209, 172);
+}

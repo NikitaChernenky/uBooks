@@ -1,0 +1,82 @@
+<!-- Customer's page navbar -->
+<app-customer-header [cartquantity]="cartquantity"></app-customer-header>
+
+<!-- Show empty cart window. -->
+<p *ngIf="alltotalprice.toFixed(2) == 0 ">
+  <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+  Shopping cart is empty!
+</p>
+
+<!-- List of books in the cart. -->
+<div class="container" *ngIf="alltotalprice.toFixed(2) > 0">
+  <!-- Header. -->
+  <div class="card shopping-cart">
+    <div class="card-header bg-dark text-light">
+      <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+      Shopping cart
+      <a routerLink="/customer/books" (click)="setActiveLink('books');" class="btn btn-sm pull-right"><i
+          class="fa fa-book" aria-hidden="true"></i>
+        Continue shopping</a>
+      <div class="clearfix"></div>
+    </div>
+    <div class="card-body">
+      <!-- Getting each record with a loop. -->
+      <div class="row" *ngFor="let book of books; let in = index">
+        <!-- Book part. -->
+        <div class="col-12 col-sm-12 col-md-2 text-center">
+          <img class="img-responsive" src={{book.BookCover}} alt="prewiew" width="50" height="80">
+        </div>
+        <div class="col-12 text-sm-center col-sm-12 text-md-left col-md-6">
+          <h4 class="product-name"><strong>{{book.BookTitle}}</strong></h4>
+          <h4>
+            <small>By {{book.BookAuthor}}</small>
+          </h4>
+        </div>
+        <div class="col-12 col-sm-12 text-sm-center col-md-4 text-md-right row">
+          <div class="col-3 col-sm-3 col-md-6 text-md-right" style="padding-top: 5px">
+            <h6><strong>${{book.Price}} <span class="text-muted">x</span></strong></h6>
+          </div>
+          <!-- Books quantity. -->
+          <div class="col-4 col-sm-4 col-md-4">
+            <div class="quantity">
+              <input type="button" value="+" class="plus" (click)="plusQuantity(book.BookID)">
+              <input type="number" step="1" max={{book.Quantity}} min="1" value={{book.BookQuantityToBuy}} title="Qty"
+                class="qty" size="4">
+              <input type="button" value="-" class="minus" (click)="minusQuantity(book.BookID)">
+            </div>
+          </div>
+          <!-- Delete book from the cart. -->
+          <div class="col-2 col-sm-2 col-md-2 text-right">
+            <button type="button" class="btn btn-outline-danger btn-xs" (click)="deleteBookFromCart(book.BookID);">
+              <i class="fa fa-trash" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <hr>
+    </div>
+    <!-- Total price of the order. Checkout the order. -->
+    <div class="card-footer">
+      <div class="pull-right" style="margin: 10px">
+        <a class="btn btn-success pull-right" (click)="getOrder()" data-toggle="modal"
+          data-target="#myModal">Checkout</a>
+        <div class="pull-right" style="margin: 5px">
+          Total price: <b>${{alltotalprice.toFixed(2)}}</b>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal window. -->
+<div id="myModal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Your order is completed and pending.</h4>
+      </div>
+      <div class="modal-body">To view the order, go to the tab "Orders".</div>
+      <div class="modal-footer"><button class="btn btn-default" type="button" data-dismiss="modal">Close</button></div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,78 @@
+<!-- Admin's page navbar -->
+<app-admin-header></app-admin-header>
+
+<!-- Form for adding a new admin. -->
+<form autocomplete="off" class="add-form text-center border border-light p-5"
+  (ngSubmit)="createAdmin(); resetCreateForm();" name="create-form" *ngIf="visibleForm == 'create'">
+  <h2>Add new admin</h2>
+  <input type="text" id="name" name="name" [(ngModel)]="data.Name" class="form-control mb-4" placeholder="Name">
+  <input type="text" id="surname" name="surname" [(ngModel)]="data.Surname" class="form-control mb-4"
+    placeholder="Surname">
+  <input type="text" id="email" name="email" [(ngModel)]="data.Email" class="form-control mb-4"
+    placeholder="Email: example@mail.com">
+  <input type="password" id="password" name="password" [(ngModel)]="data.Password" class="form-control mb-4"
+    placeholder="Password">
+  <button class="btn btn-info" type="submit"
+    *ngIf="data.Email && data.Password && data.Name && data.Surname">Add</button>
+  <button class="btn btn-info reset" (click)="resetCreateForm(); visibleForm = ''"
+    [ngClass]="{'reset1': !(data.Email && data.Password && data.Name && data.Surname)}"><i
+      class="fa fa-times"></i></button>
+</form>
+
+<!-- Form for updating existing admin. -->
+<form autocomplete="off" class="update-form text-center border border-light p-5"
+  (ngSubmit)="updateAdmin(); resetUpdateForm();" name="update-form" *ngIf="visibleForm == 'update'">
+  <h2>Update admin</h2>
+  <input type="text" id="name" name="name" [(ngModel)]="changingData.Name" class="form-control mb-4" placeholder="Name">
+  <input type="text" id="surname" name="surname" [(ngModel)]="changingData.Surname" class="form-control mb-4"
+    placeholder="Surname">
+  <input type="text" id="email" name="email" [(ngModel)]="changingData.Email" class="form-control mb-4"
+    placeholder="Email: example@mail.com">
+  <input type="text" id="password" name="password" [(ngModel)]="changingData.Password" class="form-control mb-4"
+    placeholder="Password">
+  <button class="btn btn-info" type="submit"
+    *ngIf="changingData.Email && changingData.Password && changingData.Name && changingData.Surname">Update</button>
+  <button class="btn btn-info reset" (click)="resetUpdateForm(); visibleForm = ''"
+    [ngClass]="{'reset1': !(changingData.Email && changingData.Password && changingData.Name && changingData.Surname)}"><i
+      class="fa fa-times"></i></button>
+</form>
+
+<!-- Admin table -->
+<div class="table-title">
+  <div class="row">
+    <div class="col-sm-8">
+      <h2>Admins <b>Details</b></h2>
+    </div>
+    <div class="col-sm-4">
+      <button type="button" class="btn btn-info font-weight-light add-new" (click)="visibleForm = 'create'"><i
+          class="fa fa-plus"></i> Add
+        New</button>
+    </div>
+  </div>
+</div>
+<table class="table table-striped table-dark font-weight-light">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Surname</th>
+      <th scope="col">Email</th>
+      <th scope="col">Password</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let admin of admins">
+      <th scope="row">{{admin.UserID}}</th>
+      <td>{{admin.Name}}</td>
+      <td>{{admin.Surname}}</td>
+      <td>{{admin.Email}}</td>
+      <td>{{admin.Password}}</td>
+      <td>
+        <a title="Edit" (click)="getAdminForUpdate(admin.UserID); visibleForm = 'update'"><i
+            class="fa fa-pencil"></i></a>
+        <a title="Delete" (click)="deleteAdmin(admin.UserID);"><i class="fa fa-trash"></i></a>
+      </td>
+    </tr>
+  </tbody>
+</table>

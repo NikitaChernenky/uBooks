@@ -1,0 +1,58 @@
+<!-- Customer's page navbar -->
+<app-customer-header></app-customer-header>
+
+<!-- Show empty orders window. -->
+<p *ngIf="orders.length == 0 ">
+  <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+  Order list is empty!
+</p>
+
+<!-- Orders list. -->
+<div class="container" *ngIf="orders.length != 0 ">
+  <!-- Getting each record with a loop. -->
+  <div class="card shopping-cart" *ngFor="let order of orders; index as i">
+    <!-- Header. -->
+    <div class="card-header bg-dark text-light font-weight-light">
+      <i class="fa fa-shopping-basket" aria-hidden="true"></i>
+      Order №{{order[0].OrderID}}
+      <div class="clearfix"></div>
+    </div>
+    <!-- Orders part. -->
+    <div class="card-body" *ngFor="let book of order">
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-2 text-center">
+          <img class="img-responsive" src={{book.BookCover}} alt="prewiew" width="50" height="80">
+        </div>
+        <div class="col-12 text-sm-center col-sm-12 text-md-left col-md-6">
+          <h4 class="product-name"><strong>{{book.BookTitle}} <span style="font-weight: normal;">by</span>
+              {{book.BookAuthor}}</strong></h4>
+          <h4>
+            <small>ISBN: {{book.ISBN}}</small>
+          </h4>
+          <h4>
+            <small>Genre: {{book.BookGenre}}</small>
+          </h4>
+          <h4>
+            <small>Year of publication: {{book.PublicationYear}}</small>
+          </h4>
+        </div>
+        <div class="col-12 col-sm-12 text-sm-center col-md-4 text-md-right row">
+          <div class="col-3 col-sm-3 col-md-6 text-md-right" style="padding-top: 5px; margin-left: 134px;">
+            <h6><strong>${{book.Price}} <span class="text-muted">x</span></strong> {{book.Quantity}}</h6>
+          </div>
+        </div>
+      </div>
+      <hr>
+    </div>
+    <!-- Footer. -->
+    <div class="card-footer">
+      <div class="pull-right" style="margin: 10px">
+        <div class="pull-right" style="margin: 5px;">
+          <span class="result">Total price: <b>${{order[0].TotalPrice}}</b></span>
+          <span class="result">Date: <b>{{order[0].OrderDate.replace("T", " ").slice(0, -8)}}</b></span>
+          <span class="result">Status: <b>{{order[0].OrderStatus}}</b></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

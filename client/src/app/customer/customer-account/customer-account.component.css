@@ -1,0 +1,47 @@
+.update-form {
+  width: 500px;
+  margin: 0 auto 0 auto;
+}
+
+h2 {
+  font-weight: 200;
+}
+
+.reset,
+button[type="submit"] {
+  width: 49%;
+}
+
+.reset {
+  margin-left: 8px;
+  background-color: rgb(251, 116, 24);
+  border: none;
+}
+
+button[type="submit"] {
+  background-color: rgb(251, 116, 24);
+  border: none;
+}
+
+.reset1 {
+  width: 100%;
+  margin-left: 0;
+  background-color: rgb(251, 116, 24);
+  border: none;
+}
+
+.reset:hover,
+.reset:focus,
+.reset1:hover,
+.reset1:focus,
+button[type="submit"]:hover,
+button[type="submit"]:focus {
+  border-color: inherit;
+  box-shadow: none;
+  background-color: #ff4800 !important;
+}
+
+.alert-success {
+  margin: 120px 450px 0 450px;
+  text-align: center;
+}

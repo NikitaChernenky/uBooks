@@ -1,0 +1,59 @@
+<!-- Sign-Up page. -->
+<div class="bg">
+  <div class="signup-form">
+    <form autocomplete="off" (ngSubmit)="createCustomer();" name="create-form">
+      <h2>Create Account</h2>
+      <!-- Name and surname fields of the form. -->
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-user"></i></span>
+          <input type="text" class="form-control" [(ngModel)]="data.Name" name="username" placeholder="Your name"
+            required="required">
+          <input type="text" class="form-control" [(ngModel)]="data.Surname" style="margin-left: 10px;"
+            name="usersurname" placeholder="Your surname" required="required">
+        </div>
+      </div>
+      <!-- Select country. -->
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-globe"></i></span>
+          <select class="custom-select" [(ngModel)]="data.CountryID" name="selectedCountry">
+            <option selected disabled value="none">Select country...</option>
+            <option *ngFor="let country of countries" value={{country.CountryID}}>{{country.CountryName}}
+              ({{country.CountryCode}})</option>
+          </select>
+        </div>
+      </div>
+      <!-- Phone number field of the form. -->
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+          <input type="phonenumber" class="form-control" [(ngModel)]="data.PhoneNumber" name="phonenumber"
+            placeholder="Phone Number" required="required">
+        </div>
+      </div>
+      <!-- Email field of the form. -->
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+          <input type="email" class="form-control" [(ngModel)]="data.Email" name="email" placeholder="Email Address"
+            required="required">
+        </div>
+      </div>
+      <!-- Password field of the form. -->
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+          <input type="password" class="form-control" [(ngModel)]="data.Password" name="password" placeholder="Password"
+            required="required">
+        </div>
+      </div>
+      <!-- Sign-up button of the form. -->
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-block btn-lg">Sign Up</button>
+      </div>
+      <!-- Link to the sign-in form. -->
+      <div class="text-center">Already have an account? <a routerLink="/sign-in">Sign in here</a>.</div>
+    </form>
+  </div>
+</div>

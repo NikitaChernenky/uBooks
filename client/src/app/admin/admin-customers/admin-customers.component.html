@@ -1,0 +1,107 @@
+<!-- Admin's page navbar -->
+<app-admin-header></app-admin-header>
+
+<!-- Form for adding a new customer. -->
+<form autocomplete="off" class="add-form text-center border border-light p-5"
+  (ngSubmit)="createCustomer(); resetCreateForm();" name="create-form" *ngIf="visibleForm == 'create'">
+  <h2>Add new customer</h2>
+  <input type="text" id="name" name="name" [(ngModel)]="data.Name" class="form-control mb-4" placeholder="Name">
+  <input type="text" id="surname" name="surname" [(ngModel)]="data.Surname" class="form-control mb-4"
+    placeholder="Surname">
+  <input type="text" id="email" name="email" [(ngModel)]="data.Email" class="form-control mb-4"
+    placeholder="Email: example@mail.com">
+  <input type="password" id="password" name="password" [(ngModel)]="data.Password" class="form-control mb-4"
+    placeholder="Password">
+  <select class="custom-select mb-4" [(ngModel)]="data.CountryID" name="selectedCountry">
+    <option selected disabled value="none">Select country...</option>
+    <option *ngFor="let country of countries" value={{country.CountryID}}> {{country.CountryName}}
+      ({{country.CountryCode}})</option>
+  </select>
+  <input type="text" id="phonenumber" name="phonenumber" [(ngModel)]="data.PhoneNumber" class="form-control mb-4"
+    placeholder="Phone number">
+  <input type="text" id="cardnumber" name="cardnumber" [(ngModel)]="data.CardNumber" class="form-control mb-4"
+    placeholder="Card number">
+  <button class="btn btn-info" type="submit"
+    *ngIf="data.Email && data.Password && data.Name && data.Surname && data.CountryID != 'none' && data.PhoneNumber">Add</button>
+  <button class="btn btn-info reset" (click)="resetCreateForm(); visibleForm = ''"
+    [ngClass]="{'reset1': !(data.Email && data.Password && data.Name && data.Surname && data.CountryID != 'none' && data.PhoneNumber)}"><i
+      class="fa fa-times"></i></button>
+</form>
+
+<!-- Form for updating existing customer. -->
+<form autocomplete="off" class="update-form text-center border border-light p-5"
+  (ngSubmit)="updateCustomer(); resetUpdateForm();" name="update-form" *ngIf="visibleForm == 'update'">
+  <h2>Update admin</h2>
+  <input type="text" id="name" name="name" [(ngModel)]="changingData.Name" class="form-control mb-4" placeholder="Name">
+  <input type="text" id="surname" name="surname" [(ngModel)]="changingData.Surname" class="form-control mb-4"
+    placeholder="Surname">
+  <input type="text" id="email" name="email" [(ngModel)]="changingData.Email" class="form-control mb-4"
+    placeholder="Email: example@mail.com">
+  <input type="text" id="password" name="password" [(ngModel)]="changingData.Password" class="form-control mb-4"
+    placeholder="Password">
+  <select class="custom-select mb-4" [(ngModel)]="changingData.CountryID" name="selectedCountry">
+    <option selected disabled value="none">Select country...</option>
+    <option *ngFor="let country of countries" value={{country.CountryID}}> {{country.CountryName}}
+      ({{country.CountryCode}})</option>
+  </select>
+  <input type="text" id="phonenumber" name="phonenumber" [(ngModel)]="changingData.PhoneNumber"
+    class="form-control mb-4" placeholder="Phone number">
+  <input type="text" id="cardnumber" name="cardnumber" [(ngModel)]="changingData.CardNumber" class="form-control mb-4"
+    placeholder="Card number">
+  <button class="btn btn-info" type="submit"
+    *ngIf="changingData.Email && changingData.Password && changingData.Name && changingData.Surname && changingData.CountryID != 'none' && changingData.PhoneNumber">Update</button>
+  <button class="btn btn-info reset" (click)="resetUpdateForm(); visibleForm = ''"
+    [ngClass]="{'reset1': !(changingData.Email && changingData.Password && changingData.Name && changingData.Surname && changingData.CountryID != 'none' && changingData.PhoneNumber)}"><i
+      class="fa fa-times"></i></button>
+</form>
+
+<!-- Customers table. -->
+<div class="table-title">
+  <div class="row">
+    <div class="col-sm-8">
+      <h2>Customers <b>Details</b></h2>
+    </div>
+    <div class="col-sm-4">
+      <button type="button" class="btn btn-info font-weight-light add-new" (click)="visibleForm = 'create'"><i
+          class="fa fa-plus"></i> Add
+        New</button>
+    </div>
+  </div>
+</div>
+<table class="table table-striped table-dark font-weight-light">
+  <thead>
+    <tr>
+      <th scope="col" style="display: hide;">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Surname</th>
+      <th scope="col">Email</th>
+      <th scope="col">Password</th>
+      <th scope="col">Country</th>
+      <th scope="col">Phone number</th>
+      <th scope="col">Card number</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let customer of customers">
+      <th scope="row">{{customer.UserID}}</th>
+      <td>{{customer.Name}}</td>
+      <td>{{customer.Surname}}</td>
+      <td>{{customer.Email}}</td>
+      <td>{{customer.Password}}</td>
+      <td>{{customer.CountryName}}</td>
+      <td>{{customer.CountryCode}}{{customer.PhoneNumber}}</td>
+      <td *ngIf="customer.CardNumber != '' && customer.CardNumber != null">
+        {{customer.CardNumber.substring(0,4)}}
+        {{customer.CardNumber.substring(4,8)}}
+        {{customer.CardNumber.substring(8,12)}}
+        {{customer.CardNumber.substring(12,16)}}</td>
+      <td *ngIf="customer.CardNumber == '' || customer.CardNumber == NULL">—</td>
+      <td>
+        <a title="Edit" (click)="getCustomerForUpdate(customer.UserID); visibleForm = 'update'"><i
+            class="fa fa-pencil"></i></a>
+        <a title="Delete" (click)="deleteCustomer(customer.UserID);"><i class="fa fa-trash"></i></a>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,57 @@
+<!-- Admin's page navbar -->
+<app-admin-header></app-admin-header>
+
+<!-- Form for adding a new book genre. -->
+<form autocomplete="off" class="add-form text-center border border-light p-5"
+  (ngSubmit)="createBookGenre(); resetCreateForm();" name="create-form" *ngIf="visibleForm == 'create'">
+  <h2>Add book genre</h2>
+  <input type="text" id="bookgenre" name="bookgenre" [(ngModel)]="data.BookGenre" class="form-control mb-4"
+    placeholder="Book genre">
+  <button class="btn btn-info" type="submit" *ngIf="data.BookGenre">Add</button>
+  <button class="btn btn-info reset" (click)="resetCreateForm(); visibleForm = ''"
+    [ngClass]="{'reset1': !(data.BookGenre)}"><i class="fa fa-times"></i></button>
+</form>
+
+<!-- Form for updating existing book genre. -->
+<form autocomplete="off" class="update-form text-center border border-light p-5"
+  (ngSubmit)="updateBookGenre(); resetUpdateForm();" name="update-form" *ngIf="visibleForm == 'update'">
+  <h2>Update book genre</h2>
+  <input type="text" id="bookgenre" name="bookgenre" [(ngModel)]="changingData.BookGenre" class="form-control mb-4"
+    placeholder="Book genre">
+  <button class="btn btn-info" type="submit" *ngIf="changingData.BookGenre">Update</button>
+  <button class="btn btn-info reset" (click)="resetUpdateForm(); visibleForm = ''"
+    [ngClass]="{'reset1': !(changingData.BookGenre)}"><i class="fa fa-times"></i></button>
+</form>
+
+<!-- Book genres table -->
+<div class="table-title">
+  <div class="row">
+    <div class="col-sm-8">
+      <h2>Book genres <b>Details</b></h2>
+    </div>
+    <div class="col-sm-4">
+      <button type="button" class="btn btn-info add-new" (click)="visibleForm = 'create'"><i class="fa fa-plus"></i> Add
+        New</button>
+    </div>
+  </div>
+</div>
+<table class="table table-striped table-dark font-weight-light">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Book genre</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let bookgenre of bookgenres">
+      <th scope="row">{{bookgenre.BookGenreID}}</th>
+      <td>{{bookgenre.BookGenre}}</td>
+      <td>
+        <a title="Edit" (click)="getBookGenreForUpdate(bookgenre.BookGenreID); visibleForm = 'update'"><i
+            class="fa fa-pencil"></i></a>
+        <a title="Delete" (click)="deleteBookGenre(bookgenre.BookGenreID);"><i class="fa fa-trash"></i></a>
+      </td>
+    </tr>
+  </tbody>
+</table>
