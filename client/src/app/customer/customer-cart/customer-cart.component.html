@@ -2,13 +2,13 @@
 <app-customer-header [cartquantity]="cartquantity"></app-customer-header>
 
 <!-- Show empty cart window. -->
-<p *ngIf="cartquantity === 0">
+<p *ngIf="alltotalprice.toFixed(2) == 0 ">
   <i class="fa fa-shopping-cart" aria-hidden="true"></i>
   Shopping cart is empty!
 </p>
 
 <!-- List of books in the cart. -->
-<div class="container" *ngIf="cartquantity > 0">
+<div class="container" *ngIf="alltotalprice.toFixed(2) > 0">
   <!-- Header. -->
   <div class="card shopping-cart">
     <div class="card-header bg-dark text-light">
