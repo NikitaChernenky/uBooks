@@ -19,26 +19,26 @@ export class BookGenresService {
 
   /* Load all book genres data. */
   getAllBookGenres(): Observable<BookGenres[]> {
-    return this.http.get<BookGenres[]>('/bookgenres/');
+    return this.http.get<BookGenres[]>('http://localhost:3000/bookgenres/');
   }
 
   /* Load data by book genre id. */
   getBookGenreByID(id: number): Observable<BookGenres> {
-    return this.http.get<BookGenres>('/bookgenres/' + id);
+    return this.http.get<BookGenres>('http://localhost:3000/bookgenres/' + id);
   }
 
   /* Writing data to a table. */
   insertBookGenre(bookgenre: BookGenres): Observable<BookGenres> {
-    return this.http.post<BookGenres>('/bookgenres/create', bookgenre);
+    return this.http.post<BookGenres>('http://localhost:3000/bookgenres/create', bookgenre);
   }
 
   /* Updating table data. */
   updateBookGenre(bookgenre: BookGenres): Observable<void> {
-    return this.http.put<void>('/bookgenres/update/', bookgenre);
+    return this.http.put<void>('http://localhost:3000/bookgenres/update/', bookgenre);
   }
 
   /* Delete table data. */
   deleteBookGenre(id: number) {
-    return this.http.delete('/bookgenres/delete/' + id);
+    return this.http.delete('http://localhost:3000/bookgenres/delete/' + id);
   }
 }

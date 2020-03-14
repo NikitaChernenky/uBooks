@@ -27,31 +27,31 @@ export class BooksService {
 
   /* Load all books data. */
   getAllBooks(): Observable<Books[]> {
-    return this.http.get<Books[]>('/books/');
+    return this.http.get<Books[]>('http://localhost:3000/books/');
   }
 
   /* Load data by book id. */
   getBookByID(id: number): Observable<Books> {
-    return this.http.get<Books>('/books/' + id);
+    return this.http.get<Books>('http://localhost:3000/books/' + id);
   }
 
   /* Load data by customer id. */
   getBookByCustomerID(id: number): Observable<Books> {
-    return this.http.get<Books>('/books/customer/' + id);
+    return this.http.get<Books>('http://localhost:3000/books/customer/' + id);
   }
 
   /* Writing data to a table. */
   insertBook(book: Books): Observable<Books> {
-    return this.http.post<Books>('/books/create', book);
+    return this.http.post<Books>('http://localhost:3000/books/create', book);
   }
 
   /* Updating table data. */
   updateBook(book: Books): Observable<void> {
-    return this.http.put<void>('/books/update/', book);
+    return this.http.put<void>('http://localhost:3000/books/update/', book);
   }
 
   /* Delete table data. */
   deleteBook(id: number) {
-    return this.http.delete('/books/delete/' + id);
+    return this.http.delete('http://localhost:3000/books/delete/' + id);
   }
 }
