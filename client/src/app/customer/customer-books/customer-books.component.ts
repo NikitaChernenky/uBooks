@@ -101,31 +101,27 @@ export class CustomerBooksComponent implements OnInit {
     this.searchText = "";
   }
 
-  /* Using filter of data. */
-  filter() {
-    /* Get book genres which were checked. */
-    let bookGenresForFilter = this.bookgenres.filter(genre => genre.checked == true);
-    /* Filter books list by book genres. */
-    if (bookGenresForFilter.length > 0) {
-      let arr = [];
-      for (var i = 0; i < this.books.length; i++) {
-        for (var j = 0; j < bookGenresForFilter.length; j++) {
-          if (this.bookgenres.find(genre => genre.BookGenre == this.books[i].BookGenreID).BookGenreID == bookGenresForFilter[j].BookGenreID) {
-            arr.push(this.books[i]);
-          }
-        }
-      }
-      this.books = arr;
-    }
-    /* Filter books list by book's price. */
-    if ((this.pricefrom && this.priceto) || (this.pricefrom == 0 && this.priceto)) {
-      if (this.pricefrom < 0 || this.priceto < 0 || this.pricefrom > this.priceto) {
-        return alert("Please, check your input price values!");
-      } else {
-        this.books = this.books.filter(elem => elem.Price >= this.pricefrom).filter(elem => elem.Price <= this.priceto);
-      }
+/* Check if bookgenres array contains book with its BookGenreID. */
+containsBookGenre(bookgenres, id) {
+  let contains = bookgenres.filter(obj => obj.BookGenreID == id).length >= 1;
+  return contains;
+}
+
+/* Using filter of data. */
+filter() {
+  /* Get book genres which were checked. */
+  let bookGenresForFilter = this.bookgenres.filter(genre => genre.checked == true);
+  /* Filter books list by book genres. */
+  this.books = this.books.filter(book => this.containsBookGenre(bookGenresForFilter, book.BookGenreID));
+  /* Filter books list by book's price. */
+  if ((this.pricefrom && this.priceto) || (this.pricefrom == 0 && this.priceto)) {
+    if (this.pricefrom < 0 || this.priceto < 0 || this.pricefrom > this.priceto) {
+      return alert("Please, check your input price values!");
+    } else {
+      this.books = this.books.filter(elem => elem.Price >= this.pricefrom).filter(elem => elem.Price <= this.priceto);
     }
   }
+}
 
   /* Reset filter results. Show all books. */
   resetFilter() {
