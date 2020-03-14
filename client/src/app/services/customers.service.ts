@@ -24,26 +24,26 @@ export class CustomersService {
 
   /* Load all customers data. */
   getAllCustomers(): Observable<Customers[]> {
-    return this.http.get<Customers[]>('http://localhost:3000/customers/');
+    return this.http.get<Customers[]>('/customers/');
   }
 
   /* Load data by customer id. */
   getCustomerByID(id: number): Observable<Customers> {
-    return this.http.get<Customers>('http://localhost:3000/customers/' + id);
+    return this.http.get<Customers>('/customers/' + id);
   }
 
   /* Writing data to a table. */
   insertCustomer(customer: Customers): Observable<Customers> {
-    return this.http.post<Customers>('http://localhost:3000/customers/create', customer);
+    return this.http.post<Customers>('/customers/create', customer);
   }
 
   /* Updating table data. */
   updateCustomer(customer: Customers): Observable<void> {
-    return this.http.put<void>('http://localhost:3000/customers/update/', customer);
+    return this.http.put<void>('/customers/update/', customer);
   }
 
   /* Delete table data. */
   deleteCustomer(id: number) {
-    return this.http.delete('http://localhost:3000/customers/delete/' + id);
+    return this.http.delete('/customers/delete/' + id);
   }
 }
