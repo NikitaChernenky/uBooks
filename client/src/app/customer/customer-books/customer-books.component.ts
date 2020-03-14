@@ -52,8 +52,6 @@ export class CustomerBooksComponent implements OnInit {
     this.booksService.getAllBooks().subscribe(book => {
       /* Get all books. */
       this.books = book;
-      /* Сhange ID of genres to their names. */
-      this.books.forEach(elem => elem.BookGenreID = this.bookgenres.find(genre => genre.BookGenreID == elem.BookGenreID).BookGenre);
       /* Get max value of price for filtering form. */
       this.pricetomax = this.priceto = Math.max.apply(Math, this.books.map(function (o) { return o.Price; }));
       /* Get min value of price for filtering form. */

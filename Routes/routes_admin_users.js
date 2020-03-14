@@ -1,11 +1,10 @@
 const express = require('express'); // Include Express module.
-const mySqlConnection = require('./connection');
-
 const routes = express.Router();
+const mySqlConnection = require('./connection');
 
 routes.post('/create', (req, res) => { // Create a new admin user in the database.
     let admin = req.body;
-    mySqlConnection.query("CALL CreateAdmin(?, ?, ?, ?);", [admin.Name, admin.Surname, admin.Email, admin.Password], (error, results, fields) => {
+    mySqlConnection.query("INSERT INTO Users (`UserID`, `Name`, `Surname`, `Email`, `Password`, `AdminRole`) VALUES (?, ?, ?, ?, ?, 1);", [admin.UserID, admin.Name, admin.Surname, admin.Email, admin.Password], (error, results, fields) => {
         if (!error) {
             res.send('Created successfully!');
         } else {

@@ -1,5 +1,5 @@
 {
-  "name": "client",
+  "name": "book-store",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -9,16 +9,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
-  "engines": {
-    "node": "12.16.1",
-    "npm": "6.13.4"
-  },
   "private": true,
   "dependencies": {
-    "@angular/cli": "~7.3.9",
-    "@angular/compiler-cli": "~7.2.0",
-    "@angular-devkit/build-angular": "~0.13.0",
-    "@angular/language-service": "~7.2.0",
     "@angular/animations": "~7.2.0",
     "@angular/common": "~7.2.0",
     "@angular/compiler": "~7.2.0",
@@ -35,10 +27,14 @@
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26",
+    "@angular-devkit/build-angular": "~0.13.0",
+    "@angular/cli": "~7.3.9",
+    "@angular/compiler-cli": "~7.2.0",
     "typescript": "~3.2.2"
   },
   "devDependencies": {
     
+    "@angular/language-service": "~7.2.0",
     "@types/node": "~8.9.4",
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",

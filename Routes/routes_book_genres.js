@@ -1,11 +1,10 @@
 const express = require('express'); // Include Express module.
-const mySqlConnection = require('./connection');
-
 const routes = express.Router();
+const mySqlConnection = require('./connection');
 
 routes.post('/create', (req, res) => { // Create a new book genre in the database.
     let genre = req.body;
-    mySqlConnection.query('CALL CreateBookGenre(?);', [genre.BookGenre], (error, results, fields) => {
+    mySqlConnection.query('INSERT INTO BookGenres (`BookGenreID`, `BookGenre`) VALUES (?, ?);', [genre.BookGenreID, genre.BookGenre], (error, results, fields) => {
         if (!error) {
             res.send('Created successfully!');
         } else {

@@ -76,20 +76,26 @@ export class AdminCustomersComponent implements OnInit {
     if (this.data.Name && this.data.Surname && this.validateEmail(this.data.Email) && this.data.Password && this.data.CountryID != 'none' && this.data.PhoneNumber) {
       /* Checking if there are some users with the same email address. */
       if (!this.customers.find(customer => customer.Email == this.data.Email && customer.UserID != this.data.UserID) && !this.admins.find(admin => admin.Email == this.data.Email)) {
-        /* INSERT query to the customers' table of the database */
-        this.customersService.insertCustomer(this.data).subscribe(() => { this.fetchData(); });
         /* Add new data to the table of HTML-page. */
-        this.customers.push({
-          UserID: this.customers[this.customers.length - 1].UserID + 1,
+        let customerid = this.customers[this.customers.length - 1].UserID + 1;
+        if (this.admins.find(admin => admin.UserID == customerid)) {
+          customerid++;
+        }
+        let customer = {
+          UserID: customerid,
           Name: this.data.Name,
           Surname: this.data.Surname,
           Email: this.data.Email,
           Password: this.data.Password,
+          CountryID: this.data.CountryID,
           CountryName: this.countries.find(country => country.CountryID == this.data.CountryID).CountryName,
           PhoneNumber: this.countries.find(country => country.CountryID == this.data.CountryID).CountryCode + "" + this.data.PhoneNumber,
           CardNumber: this.data.CardNumber
-        });
+        }
+        this.customers.push(customer);
         this.authService.setSignedUpUser(this.data);
+        /* INSERT query to the customers' table of the database */
+        this.customersService.insertCustomer(customer).subscribe(() => { this.fetchData(); });
         /* Hide adding form. */
         this.visibleForm = "";
       } else {

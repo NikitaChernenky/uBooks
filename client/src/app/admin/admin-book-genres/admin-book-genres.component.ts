@@ -53,13 +53,14 @@ export class AdminBookGenresComponent implements OnInit {
     if (this.data.BookGenre) {
       /* Checking if there are some genres with the same name. */
       if (!this.bookgenres.find(bookgenre => bookgenre.BookGenre == this.data.BookGenre)) {
-        /* INSERT query to the book genres table of the database */
-        this.bookGenresService.insertBookGenre(this.data).subscribe(() => { this.fetchData(); });
         /* Add new data to the table of HTML-page. */
-        this.bookgenres.push({
+        let bookgenre = {
           BookGenreID: this.bookgenres[this.bookgenres.length - 1].BookGenreID + 1,
           BookGenre: this.data.BookGenre
-        });
+        };
+        this.bookgenres.push(bookgenre);
+        /* INSERT query to the book genres table of the database */
+        this.bookGenresService.insertBookGenre(bookgenre).subscribe(() => { this.fetchData(); });
         /* Hide adding form. */
         this.visibleForm = "";
       } else {

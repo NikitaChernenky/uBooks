@@ -64,17 +64,22 @@ export class AdminAdminsComponent implements OnInit {
     if (this.data.Name && this.data.Surname && this.validateEmail(this.data.Email) && this.data.Password) {
       /* Checking if there are some users with the same email address. */
       if (!this.admins.find(admin => admin.Email == this.data.Email) && !this.customers.find(customer => customer.Email == this.data.Email)) {
-        /* INSERT query to the admins' table of the database */
-        this.adminsService.insertAdmin(this.data).subscribe(() => { this.fetchData(); });
         /* Add new data to the table of HTML-page. */
-        this.admins.push({
-          UserID: this.admins[this.admins.length - 1].UserID + 1,
+        let adminid = this.admins[this.admins.length - 1].UserID + 1;
+        if (this.customers.find(customer => customer.UserID == adminid)) {
+          adminid++;
+        }
+        let adminuser = {
+          UserID: adminid,
           Name: this.data.Name,
           Surname: this.data.Surname,
           Email: this.data.Email,
           Password: this.data.Password
-        });
-        this.authService.setSignedUpUser(this.data);
+        };
+        this.admins.push(adminuser);
+        this.authService.setSignedUpUser(adminuser);
+        /* INSERT query to the admins' table of the database */
+        this.adminsService.insertAdmin(this.data).subscribe(() => { this.fetchData(); });
         /* Hide adding form. */
         this.visibleForm = "";
       } else {

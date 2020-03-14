@@ -75,21 +75,25 @@ export class AdminBooksComponent implements OnInit {
     if (this.data.ISBN && this.data.BookCover && this.data.BookTitle && this.data.BookAuthor && this.data.BookGenreID != 'none' && this.data.PublicationYear && this.data.BookOverview && this.data.Quantity >= 0 && this.data.Price) {
       /* Checking if there are some users with the same email address. */
       if (!this.books.find(book => (book.ISBN == this.data.ISBN && book.BookID != this.data.BookID) || (book.BookAuthor == this.data.BookAuthor && book.BookTitle == this.data.BookTitle && book.BookTitle == this.data.BookTitle && book.PublicationYear == this.data.PublicationYear && book.BookID != this.data.BookID))) {
-        /* INSERT query to the admins' table of the database */
-        this.booksService.insertBook(this.data).subscribe(() => { this.fetchData(); });
         /* Add new data to the table of HTML-page. */
-        this.books.push({
+        let book = {
           BookID: this.books[this.books.length - 1].BookID + 1,
+          UserID: this.authService.getSignedInUser().UserID,
           ISBN: this.data.ISBN,
           BookCover: this.data.BookCover,
           BookTitle: this.data.BookTitle,
           BookAuthor: this.data.BookAuthor,
-          BookGenreID: this.bookgenres.find(genre => genre.BookGenreID == this.data.BookGenreID),
+          BookGenreID: this.bookgenres.find(genre => genre.BookGenreID == this.data.BookGenreID).BookGenreID,
           PublicationYear: this.data.PublicationYear,
           BookOverview: this.data.BookOverview,
           Quantity: this.data.Quantity,
-          Price: this.data.Price
-        });
+          Price: this.data.Price,
+          Name: this.authService.getSignedInUser().Name,
+          Surname: this.authService.getSignedInUser().Surname
+        };
+        this.books.push(book);
+        /* INSERT query to the admins' table of the database */
+        this.booksService.insertBook(book).subscribe(() => { this.fetchData(); });
         /* Hide adding form. */
         this.visibleForm = "";
       } else {

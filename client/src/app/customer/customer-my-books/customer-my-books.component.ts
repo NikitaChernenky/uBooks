@@ -79,10 +79,10 @@ export class CustomerMyBooksComponent implements OnInit {
       /* Checking if there are some users with the same email address. */
       if (!this.books.find(book => (book.ISBN == this.data.ISBN && book.BookID != this.data.BookID) || (book.BookAuthor == this.data.BookAuthor && book.BookTitle == this.data.BookTitle && book.BookTitle == this.data.BookTitle && book.PublicationYear == this.data.PublicationYear && book.BookID != this.data.BookID))) {
         /* Add new data to the table of HTML-page. */
-        this.data.UserID = this.authService.getSignedInUser().UserID;
         let bookID = Math.max.apply(null, this.allbooksid) + 1;
         let book = {
           BookID: bookID,
+          UserID: this.authService.getSignedInUser().UserID,
           ISBN: this.data.ISBN,
           BookCover: this.data.BookCover,
           BookTitle: this.data.BookTitle,
@@ -93,12 +93,11 @@ export class CustomerMyBooksComponent implements OnInit {
           BookOverview: this.data.BookOverview,
           Quantity: this.data.Quantity,
           Price: this.data.Price
-        }
+        };
         this.books.push(book);
         this.allbooksid.push(bookID);
-        console.log(this.allbooksid);
         /* INSERT query to the admins' table of the database */
-        this.booksService.insertBook(this.data).subscribe(() => { this.fetchData(); });
+        this.booksService.insertBook(book).subscribe(() => { this.fetchData(); });
         /* Hide adding form. */
         this.visibleForm = "";
       } else {

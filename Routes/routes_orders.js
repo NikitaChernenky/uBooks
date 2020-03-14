@@ -1,11 +1,10 @@
 const express = require('express'); // Include Express module.
-const mySqlConnection = require('./connection');
-
 const routes = express.Router();
+const mySqlConnection = require('./connection');
 
 routes.post('/create', (req, res) => { // Create a new order in the database.
     let order = req.body;
-    mySqlConnection.query('CALL CreateOrder(?, ?, ?, ?, ?, ?);', [order.OrderID, order.UserID, order.BookID, order.Quantity, order.OrderDate, order.OrderStatus], (error, results, fields) => {
+    mySqlConnection.query('INSERT INTO Orders (`OrderID`, `UserID`, `BookID`, `Quantity`, `OrderDate`, `OrderStatus`) VALUES (?, ?, ?, ?, ?, ?);', [order.OrderID, order.UserID, order.BookID, order.Quantity, order.OrderDate, order.OrderStatus], (error, results, fields) => {
         if (!error) {
             res.send('Created successfully!');
         } else {

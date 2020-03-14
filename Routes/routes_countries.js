@@ -1,12 +1,10 @@
 const express = require('express'); // Include Express module.
-const mySqlConnection = require('./connection');
-
 const routes = express.Router();
-
+const mySqlConnection = require('./connection');
 
 routes.post('/create', (req, res) => { // Create a new country in the database.
     let country = req.body;
-    mySqlConnection.query('CALL CreateCountry(?, ?);', [country.CountryName, country.CountryCode], (error, results, fields) => {
+    mySqlConnection.query('INSERT INTO countries(`CountryID`, `CountryName`, `CountryCode`) VALUES (?, ?, ?);', [country.CountryID, country.CountryName, country.CountryCode], (error, results, fields) => {
         if (!error) {
             res.send('Created successfully!');
         } else {

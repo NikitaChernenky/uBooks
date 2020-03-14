@@ -53,15 +53,15 @@ export class AdminCountriesComponent implements OnInit {
     if (this.data.CountryName && this.data.CountryCode) {
       /* Checking if there are some countries with the same name or country code. */
       if (!this.countries.find(country => country.CountryName == this.data.CountryName || country.CountryCode == this.data.CountryCode)) {
-        /* INSERT query to the countries table of the database */
-        this.countriesService.insertCountry(this.data).subscribe(() => { this.fetchData(); });
         /* Add new data to the table of HTML-page. */
-        this.countries.push({
+        let country = {
           CountryID: this.countries[this.countries.length - 1].CountryID + 1,
           CountryName: this.data.CountryName,
           CountryCode: this.data.CountryCode
-        }
-        );
+        };
+        this.countries.push(country);
+        /* INSERT query to the countries table of the database */
+        this.countriesService.insertCountry(country).subscribe(() => { this.fetchData(); });
         /* Hide adding form. */
         this.visibleForm = "";
       } else {
