@@ -111,7 +111,7 @@ a {
 
 .btn-primary {
   color: #fff;
-  background-color: rgb(251, 116, 24);
+  background-color: #004f2e;
   margin-left: 11px;
   width: 50px;
 }
@@ -158,7 +158,7 @@ h2 {
 }
 
 .sorting-type:hover {
-  border-color: rgb(251, 116, 24);
+  border-color: #004f2e;
   background: linear-gradient(to bottom, #ff3300, #f7b733);
   color: #fff;
 }

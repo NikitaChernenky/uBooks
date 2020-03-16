@@ -2,9 +2,9 @@ const mysql = require('mysql'); // Include MySQL module.
 
 const mySqlConnection = mysql.createPool(process.env.CLEARDB_DATABASE_URL || { // Create the connection variable with the required details.
     host: 'us-cdbr-iron-east-04.cleardb.net',
-    user: 'bbefdf4f69e6f9',
-    password: '483fda5c',
-    database: 'heroku_95b55225a0d78df',
+    user: 'b2f21ea5683387',
+    password: 'a6a5d52e',
+    database: 'heroku_1610141947c8944',
     multipleStatements: true
 });
 

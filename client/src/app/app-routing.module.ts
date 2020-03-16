@@ -35,8 +35,8 @@ const routes: Routes = [
   { path: 'sign-in', component: SignInComponent },
   { path: 'sign-up', component: SignUpComponent },
   /* Routes for undefined pages. */
-  { path: '**', component: NotFoundComponent },
-  { path: '', component: NotFoundComponent }
+  { path: '', redirectTo: 'sign-in', pathMatch:'full' },
+  { path: '**', component: NotFoundComponent }
 ];
 
 /* Decorator function NgModule.*/
