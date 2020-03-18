@@ -26,7 +26,7 @@ export class SignUpComponent implements OnInit {
   incorrectPassword = false;
   incorrectEmail = false;
   incorrectCountry = false;
-  inorrectPhoneNumber = false;
+  incorrectPhoneNumber = false;
 
   /* Using services. */
   constructor(
@@ -42,6 +42,11 @@ export class SignUpComponent implements OnInit {
     this.fetchData();
     /* Reset drop-down list with countries. */
     this.data.CountryID = "none";
+    this.data.Name = '';
+    this.data.Surname = '';
+    this.data.PhoneNumber = '';
+    this.data.Email = '';
+    this.data.Password = '';
   }
 
   /* Load data using services. */
@@ -92,7 +97,7 @@ export class SignUpComponent implements OnInit {
       this.incorrectCountry = true;
     }
     if (!this.validatePhoneNumber(this.data.PhoneNumber)) {
-      this.inorrectPhoneNumber = true;
+      this.incorrectPhoneNumber = true;
     }
     if (!this.validateEmail(this.data.Email)) {
       this.incorrectEmail = true;
@@ -129,7 +134,7 @@ export class SignUpComponent implements OnInit {
         "Incorrect Input \n" +
           this.incorrectName +
           " " +
-          this.inorrectPhoneNumber +
+          this.incorrectPhoneNumber +
           " " +
           this.incorrectCountry +
           " " +
@@ -166,6 +171,6 @@ export class SignUpComponent implements OnInit {
     this.incorrectPassword = false;
     this.incorrectEmail = false;
     this.incorrectCountry = false;
-    this.inorrectPhoneNumber = false;
+    this.incorrectPhoneNumber = false;
   }
 }
