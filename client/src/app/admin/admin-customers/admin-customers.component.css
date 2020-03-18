@@ -1,8 +1,6 @@
 .table-dark {
   color: #fff;
-  background: rgb(0,79,46);
-  background: linear-gradient(90deg, rgba(0,79,46,1) 35%, rgba(108,255,0,0.2637429971988795) 100%);
-  width: 1000px;
+  background: linear-gradient(to top, #ff7b00, #ffc145);
   margin: 5px auto 70px auto;
 }
 
