@@ -82,13 +82,15 @@ export class SignUpComponent implements OnInit {
     //this.resetValidationFlags();
     /* Checking if data properties is not empty and email address validation. */
     if (
-      !this.validateName(this.data.Name) ||
-      !this.validateName(this.data.Surname)
+      !(
+        this.validateName(this.data.Name) &&
+        this.validateName(this.data.Surname)
+      )
     ) {
       //validate name: if first or last name incorrect -> throw validation error
       this.incorrentName = true;
     }
-    if (this.data.CountryID != "none") {
+    if (this.data.CountryID == "none") {
       this.incorrectCountry = true;
     }
     if (!this.validatePhoneNumber(this.data.PhoneNumber)) {
@@ -97,7 +99,7 @@ export class SignUpComponent implements OnInit {
     if (!this.validateEmail(this.data.Email)) {
       this.incorrentEmail = true;
     }
-    if(!this.validatePassword(this.data.Password)) {
+    if (!this.validatePassword(this.data.Password)) {
       this.incorrectPassword = true;
     }
     if (
@@ -125,7 +127,18 @@ export class SignUpComponent implements OnInit {
         alert("User with this email is already signed up!");
       }
     } else {
-      alert("Incorrect Input \n" + this.incorrentName + " " + this.inorrectPhoneNumber + " " + this.incorrectCountry + " " + this.incorrentEmail + " " + this.incorrectPassword);
+      alert(
+        "Incorrect Input \n" +
+          this.incorrentName +
+          " " +
+          this.inorrectPhoneNumber +
+          " " +
+          this.incorrectCountry +
+          " " +
+          this.incorrentEmail +
+          " " +
+          this.incorrectPassword
+      );
     }
   }
   /* Email address validation. */
@@ -140,7 +153,7 @@ export class SignUpComponent implements OnInit {
   }
 
   validateName(name) {
-    var nameRegEx = /^([a-zA-Z]{1,})/; //name has to be at least 1 character long
+    var nameRegEx = /^([a-zA-Z]){1,30}$/; //name has to be at least 1 character long and less than 30 characters long
     return nameRegEx.test(String(name));
   }
 
