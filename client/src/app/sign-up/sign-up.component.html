@@ -13,7 +13,7 @@
           <input type="text" class="form-control" [(ngModel)]="data.Surname" style="margin-left: 10px;"
             name="usersurname" placeholder="Your surname" required="required">
         </div>
-        <div *ngIf="this.data.Name.length() == 0">
+        <div *ngIf="toString(this.data.Name).length() == 0">
           <span class="validation">* Please enter your name</span>
         </div>
       <!-- Select country. -->
