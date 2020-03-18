@@ -14,8 +14,8 @@
             name="usersurname" placeholder="Your surname" required="required">
         </div>
         <div *ngIf="incorrectName == true"
-         class="alert alert-danger">
-          * Please enter your name
+         class="alert alert-danger validation">
+          *Please enter your name
         </div>
       <!-- Select country. -->
       <div class="form-group">
@@ -28,6 +28,10 @@
           </select>
         </div>
       </div>
+      <div *ngIf="incorrectCountry == true"
+      class="alert alert-danger validation">
+       *Please select country
+     </div>
       <!-- Phone number field of the form. -->
       <div class="form-group">
         <div class="input-group">
@@ -36,6 +40,10 @@
             placeholder="Phone Number" required="required">
         </div>
       </div>
+      <div *ngIf="incorrectPhoneNumber == true"
+      class="alert alert-danger validation">
+       *Please enter correct phone number
+     </div>
       <!-- Email field of the form. -->
       <div class="form-group">
         <div class="input-group">
@@ -44,6 +52,10 @@
             required="required">
         </div>
       </div>
+      <div *ngIf="incorrectEmail == true"
+      class="alert alert-danger validation">
+       *Please enter correct email address
+     </div>
       <!-- Password field of the form. -->
       <div class="form-group">
         <div class="input-group">
@@ -52,6 +64,10 @@
             required="required">
         </div>
       </div>
+      <div *ngIf="incorrectPassword == true"
+      class="alert alert-danger validation">
+       *Password must contain at least 1 upperscase letter, 1 number and be at least 8 characters long
+     </div>
       <!-- Sign-up button of the form. -->
       <div class="form-group">
         <button type="submit" class="btn btn-primary btn-block btn-lg">Sign Up</button>
