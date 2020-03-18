@@ -5,6 +5,7 @@ import { CustomersService } from "../services/customers.service";
 import { Router } from "@angular/router";
 import { AuthService } from "../services/auth.service";
 import { CountriesService } from "../services/countries.service";
+import { privateEncrypt } from 'crypto';
 
 /* Using the @Component decorator to make a class a component. */
 @Component({
@@ -153,7 +154,8 @@ export class SignUpComponent implements OnInit {
   }
 
   validateName(name) {
-    var nameRegEx = /([a-zA-Z]{2,30})/; //name has to be at least 1 character long and less than 30 characters long
+    console.log('here');
+    var nameRegEx = /[a-zA-z]{1,30}/; //name has to be at least 1 character long and less than 30 characters long
     return nameRegEx.test(String(name));
   }
 
