@@ -19,7 +19,7 @@ h2 {
 }
 
 .add-new {
-  background-color: #004f2e;
+  background-color: rgb(251, 116, 24);
   font-weight: 200;
   padding-right: 40px;
   padding-left: 40px;
@@ -55,7 +55,7 @@ button[type="submit"]:focus {
 }
 
 .fa-pencil:hover {
-  color: #004f2e;
+  color: rgb(251, 116, 24);
 }
 
 .reset,
@@ -65,7 +65,7 @@ button[type="submit"] {
 
 .reset {
   margin-left: 8px;
-  background-color: #004f2e;
+  background-color: rgb(251, 116, 24);
   border: none;
 }
 
@@ -77,7 +77,7 @@ button[type="submit"] {
 .reset1 {
   width: 100%;
   margin-left: 0;
-  background-color: #004f2e;
+  background-color: rgb(251, 116, 24);
   border: none;
 }
 
@@ -99,7 +99,7 @@ p#empty {
 }
 
 button.btn.btn-default {
-  border-color: #004f2e;
+  border-color: rgb(251, 116, 24);
 }
 
 input#bookcover {
