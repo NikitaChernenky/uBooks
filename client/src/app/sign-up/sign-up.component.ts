@@ -80,16 +80,14 @@ export class SignUpComponent implements OnInit {
   /* Creating a new customer account (Sign up). Writing data to the database table. */
   createCustomer() {
     this.resetValidationFlags();
-    /* Checking if data properties is not empty and email address validation. */
-    if (
-      !(
-        this.validateName(this.data.Name) &&
-        this.validateName(this.data.Surname)
-      )
-    ) {
-      //validate name: if first or last name incorrect -> throw validation error
+    //validate name: if first or last name incorrect -> throw validation error
+    if (!this.validateName(this.data.Name)) {
       this.incorrectName = true;
     }
+    if (!this.validateName(this.data.Surname)) {
+      this.incorrectName = true;
+    }
+
     if (this.data.CountryID == "none") {
       this.incorrectCountry = true;
     }
