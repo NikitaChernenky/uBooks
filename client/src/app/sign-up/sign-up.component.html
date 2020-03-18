@@ -9,8 +9,12 @@
           <span class="input-group-addon"><i class="fa fa-user"></i></span>
           <input type="text" class="form-control" [(ngModel)]="data.Name" name="username" placeholder="Your name"
             required="required">
+            </div>
           <input type="text" class="form-control" [(ngModel)]="data.Surname" style="margin-left: 10px;"
             name="usersurname" placeholder="Your surname" required="required">
+        </div>
+        <div *ngIf="this.data.Name.length() == 0">
+          <span class="validation">* Please enter your name</span>
         </div>
       </div>
       <!-- Select country. -->

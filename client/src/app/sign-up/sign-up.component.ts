@@ -62,7 +62,7 @@ export class SignUpComponent implements OnInit {
   /* Creating a new customer account (Sign up). Writing data to the database table. */
   createCustomer() {
     /* Checking if data properties is not empty and email address validation. */
-    if (this.data.CountryID != 'none' && this.data.Name && this.data.Surname && this.data.PhoneNumber && this.validateEmail(this.data.Email) && this.data.Password) {
+    if (this.data.CountryID != 'none' && this.data.Name && this.data.Surname && this.data.PhoneNumber && this.validateEmail(this.data.Email) && this.validatePassword(this.data.Password)) {
       /* Checking if there are some users with the same email address. */
       if (!this.customers.find(user => user.Email == this.data.Email) && !this.admins.find(user => user.Email == this.data.Email)) {
         /* INSERT query to the customers' table of the database */
@@ -72,16 +72,23 @@ export class SignUpComponent implements OnInit {
         /* Open sign-in page. */
         this.router.navigate(['/sign-in']);
       } else {
-        alert("Input or select fields must not be empty or incorrect!");
+        alert('User with this email is already signed up!');
+        
       }
     } else {
-      alert('User with this email is already signed up!');
+      alert("Please make sure y");
     }
   }
 
   /* Email address validation. */
   validateEmail(email) {
-    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
+    var emailRegEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return emailRegEx.test(String(email).toLowerCase());
   }
+
+  validatePassword(password) {
+    var passwordRegEx = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    return passwordRegEx.test(String(password));
+  }
+  
 }

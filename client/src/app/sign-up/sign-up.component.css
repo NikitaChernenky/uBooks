@@ -156,3 +156,7 @@ body {
 .move-right {
   padding-right: 42px;
 }
+
+.validation {
+  color:red;
+}
