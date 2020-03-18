@@ -27,11 +27,12 @@
               ({{country.CountryCode}})</option>
           </select>
         </div>
+        <div *ngIf="incorrectCountry == true"
+        class="alert alert-danger validation">
+         *Please select country
+       </div>
       </div>
-      <div *ngIf="incorrectCountry == true"
-      class="alert validation">
-       *Please select country
-     </div>
+
       <!-- Phone number field of the form. -->
       <div class="form-group">
         <div class="input-group">
