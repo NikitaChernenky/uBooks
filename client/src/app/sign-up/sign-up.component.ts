@@ -24,7 +24,7 @@ export class SignUpComponent implements OnInit {
   //validation flags
   incorrectName = false;
   incorrectPassword = false;
-  incorrentEmail = false;
+  incorrectEmail = false;
   incorrectCountry = false;
   inorrectPhoneNumber = false;
 
@@ -88,7 +88,7 @@ export class SignUpComponent implements OnInit {
       )
     ) {
       //validate name: if first or last name incorrect -> throw validation error
-      this.incorrentName = true;
+      this.incorrectName = true;
     }
     if (this.data.CountryID == "none") {
       this.incorrectCountry = true;
@@ -97,7 +97,7 @@ export class SignUpComponent implements OnInit {
       this.inorrectPhoneNumber = true;
     }
     if (!this.validateEmail(this.data.Email)) {
-      this.incorrentEmail = true;
+      this.incorrectEmail = true;
     }
     if (!this.validatePassword(this.data.Password)) {
       this.incorrectPassword = true;
@@ -129,13 +129,13 @@ export class SignUpComponent implements OnInit {
     } else {
       alert(
         "Incorrect Input \n" +
-          this.incorrentName +
+          this.incorrectName +
           " " +
           this.inorrectPhoneNumber +
           " " +
           this.incorrectCountry +
           " " +
-          this.incorrentEmail +
+          this.incorrectEmail +
           " " +
           this.incorrectPassword
       );
@@ -164,9 +164,9 @@ export class SignUpComponent implements OnInit {
   }
 
   resetValidationFlags() {
-    this.incorrentName = false;
+    this.incorrectName = false;
     this.incorrectPassword = false;
-    this.incorrentEmail = false;
+    this.incorrectEmail = false;
     this.incorrectCountry = false;
     this.inorrectPhoneNumber = false;
   }
