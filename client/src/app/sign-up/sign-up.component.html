@@ -13,8 +13,9 @@
           <input type="text" class="form-control" [(ngModel)]="data.Surname" style="margin-left: 10px;"
             name="usersurname" placeholder="Your surname" required="required">
         </div>
-        <div *ngIf="incorrectName">
-          <span class="validation">* Please enter your name</span>
+        <div *ngIf="incorrectName"
+         class="alert alert-danger">
+          * Please enter your name
         </div>
       <!-- Select country. -->
       <div class="form-group">

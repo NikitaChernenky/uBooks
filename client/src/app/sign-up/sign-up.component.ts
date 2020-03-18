@@ -79,7 +79,7 @@ export class SignUpComponent implements OnInit {
 
   /* Creating a new customer account (Sign up). Writing data to the database table. */
   createCustomer() {
-    this.resetValidationFlags();
+    //this.resetValidationFlags();
     /* Checking if data properties is not empty and email address validation. */
     if (
       !this.validateName(this.data.Name) ||
@@ -125,7 +125,7 @@ export class SignUpComponent implements OnInit {
         alert("User with this email is already signed up!");
       }
     } else {
-      alert("Incorrect Input");
+      alert("Incorrect Input \n" + this.incorrentName + " " + this.inorrectPhoneNumber + " " + this.incorrectCountry + " " + this.incorrentEmail + " " + this.incorrectPassword);
     }
   }
   /* Email address validation. */
@@ -148,7 +148,7 @@ export class SignUpComponent implements OnInit {
     var phoneRegEx = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/; //matches various phone number entry formats
     return phoneRegEx.test(String(phoneNumber));
   }
-  
+
   resetValidationFlags() {
     this.incorrentName = false;
     this.incorrectPassword = false;
