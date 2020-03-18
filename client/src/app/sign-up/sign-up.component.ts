@@ -22,7 +22,7 @@ export class SignUpComponent implements OnInit {
   data: any = {};
 
   //validation flags
-  incorrentName = false;
+  incorrectName = false;
   incorrectPassword = false;
   incorrentEmail = false;
   incorrectCountry = false;

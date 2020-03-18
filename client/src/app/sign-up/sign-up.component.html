@@ -13,7 +13,7 @@
           <input type="text" class="form-control" [(ngModel)]="data.Surname" style="margin-left: 10px;"
             name="usersurname" placeholder="Your surname" required="required">
         </div>
-        <div *ngIf="incorrectName"
+        <div *ngIf="incorrectName == true"
          class="alert alert-danger">
           * Please enter your name
         </div>
