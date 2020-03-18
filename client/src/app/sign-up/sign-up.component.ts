@@ -154,7 +154,6 @@ export class SignUpComponent implements OnInit {
   }
 
   validateName(name) {
-    console.log('here');
     var nameRegEx = /[a-zA-z]{1,30}/; //name has to be at least 1 character long and less than 30 characters long
     return nameRegEx.test(String(name));
   }
