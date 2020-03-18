@@ -158,7 +158,7 @@ export class SignUpComponent implements OnInit {
   }
 
   validatePhoneNumber(phoneNumber) {
-    var phoneRegEx = /^(\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/; //matches various phone number entry formats
+    var phoneRegEx = /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/; //matches various phone number entry formats
     return phoneRegEx.test(String(phoneNumber));
   }
 
