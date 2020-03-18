@@ -79,7 +79,7 @@ export class SignUpComponent implements OnInit {
 
   /* Creating a new customer account (Sign up). Writing data to the database table. */
   createCustomer() {
-    //this.resetValidationFlags();
+    this.resetValidationFlags();
     /* Checking if data properties is not empty and email address validation. */
     if (
       !(
