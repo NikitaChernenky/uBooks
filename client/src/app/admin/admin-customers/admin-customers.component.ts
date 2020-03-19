@@ -21,7 +21,7 @@ export class AdminCustomersComponent implements OnInit {
   countries: any = [];
   data: any = {};
   changingData: any = {};
-  visibleForm: string = "";
+  visibleForm: string = '';
 
   /* Using services. */
   constructor(private customersService: CustomersService, private countriesService: CountriesService, private adminsService: AdminsService, private authService: AuthService) { }
@@ -30,7 +30,7 @@ export class AdminCustomersComponent implements OnInit {
   ngOnInit() {
     this.fetchData();
     /* Reset drop-down list with countries. */
-    this.data.CountryID = "none";
+    this.data.CountryID = 'none';
   }
 
   /* Load data to variable using customer and countries services. */
@@ -63,6 +63,7 @@ export class AdminCustomersComponent implements OnInit {
   /* Reset create form after button clicking. */
   resetCreateForm() {
     this.data = {};
+    this.data.CountryID = 'none';
   }
 
   /* Reset update form after button clicking. */
@@ -79,7 +80,7 @@ export class AdminCustomersComponent implements OnInit {
         /* Add new data to the table of HTML-page. */
         let customerid = this.customers[this.customers.length - 1].UserID + 1;
         if (this.admins.find(admin => admin.UserID == customerid)) {
-          customerid++;
+          customerid = this.admins[this.admins.length - 1].UserID + 1;
         }
         let customer = {
           UserID: customerid,
@@ -89,7 +90,8 @@ export class AdminCustomersComponent implements OnInit {
           Password: this.data.Password,
           CountryID: this.data.CountryID,
           CountryName: this.countries.find(country => country.CountryID == this.data.CountryID).CountryName,
-          PhoneNumber: this.countries.find(country => country.CountryID == this.data.CountryID).CountryCode + "" + this.data.PhoneNumber,
+          CountryCode: this.countries.find(country => country.CountryID == this.data.CountryID).CountryCode,
+          PhoneNumber: this.data.PhoneNumber,
           CardNumber: this.data.CardNumber
         }
         this.customers.push(customer);
@@ -97,12 +99,12 @@ export class AdminCustomersComponent implements OnInit {
         /* INSERT query to the customers' table of the database */
         this.customersService.insertCustomer(customer).subscribe(() => { this.fetchData(); });
         /* Hide adding form. */
-        this.visibleForm = "";
+        this.visibleForm = '';
       } else {
-        alert("User with this email exists!"); this.visibleForm = "";
+        alert('User with this email exists!'); this.visibleForm = '';
       }
     } else {
-      alert('Please, fill in all fields or change email address!'); this.visibleForm = "";
+      alert('Please, fill in all fields or change email address!'); this.visibleForm = '';
     }
   }
 
@@ -129,12 +131,12 @@ export class AdminCustomersComponent implements OnInit {
           }
         });
         /* Hide adding form. */
-        this.visibleForm = "";
+        this.visibleForm = '';
       } else {
-        alert("User with this email exists!"); this.visibleForm = "";
+        alert('User with this email exists!'); this.visibleForm = '';
       }
     } else {
-      alert("Input fields must not be empty or incorrect!"); this.visibleForm = "";
+      alert('Input fields must not be empty or incorrect!'); this.visibleForm = '';
     }
   }
 

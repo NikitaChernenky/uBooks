@@ -41,7 +41,7 @@ export class SignUpComponent implements OnInit {
   ngOnInit() {
     this.fetchData();
     /* Reset drop-down list with countries. */
-    this.data.CountryID = "none";
+    this.data.CountryID = 'none';
     this.data.Name = '';
     this.data.Surname = '';
     this.data.PhoneNumber = '';
@@ -81,7 +81,7 @@ export class SignUpComponent implements OnInit {
       }
     );
   }
-
+  
   /* Creating a new customer account (Sign up). Writing data to the database table. */
   createCustomer() {
     this.resetValidationFlags();
@@ -118,30 +118,24 @@ export class SignUpComponent implements OnInit {
         !this.customers.find(user => user.Email == this.data.Email) &&
         !this.admins.find(user => user.Email == this.data.Email)
       ) {
+        let customerid = this.customers[this.customers.length - 1].UserID + 1;
+        if (this.admins.find(admin => admin.UserID == customerid)) {
+          customerid = this.admins[this.admins.length - 1].UserID + 1;
+        }
+        this.data.UserID = customerid;
+        /* Using authService to add signed up user. */
+        this.authService.setSignedUpUser(this.data);
         /* INSERT query to the customers' table of the database */
         this.customersService.insertCustomer(this.data).subscribe(() => {
           this.fetchData();
         });
-        /* Using authService to add signed up user. */
-        this.authService.setSignedUpUser(this.data);
         /* Open sign-in page. */
         this.router.navigate(["/sign-in"]);
       } else {
         alert("User with this email is already signed up!");
       }
     } else {
-      alert(
-        "Incorrect Input \n" +
-          this.incorrectName +
-          " " +
-          this.incorrectPhoneNumber +
-          " " +
-          this.incorrectCountry +
-          " " +
-          this.incorrectEmail +
-          " " +
-          this.incorrectPassword
-      );
+      alert("Incorrect Input");
     }
   }
   /* Email address validation. */
@@ -156,7 +150,7 @@ export class SignUpComponent implements OnInit {
   }
 
   validateName(name) {
-    console.log('here');
+    console.log("here");
     var nameRegEx = /[a-zA-z]{1,30}/; //name has to be at least 1 character long and less than 30 characters long
     return nameRegEx.test(String(name));
   }

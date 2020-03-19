@@ -20,7 +20,7 @@ export class AdminBooksComponent implements OnInit {
   currentUser: any = {};
   data: any = {};
   changingData: any = {};
-  visibleForm: string = "";
+  visibleForm: string = '';
 
   /* Using services. */
   constructor(private booksService: BooksService, private bookGenres: BookGenresService, private authService: AuthService) {
@@ -62,6 +62,7 @@ export class AdminBooksComponent implements OnInit {
   /* Reset create form after button clicking. */
   resetCreateForm() {
     this.data = {};
+    this.data.BookGenreID = 'none';
   }
 
   /* Reset update form after button clicking. */
@@ -95,12 +96,12 @@ export class AdminBooksComponent implements OnInit {
         /* INSERT query to the admins' table of the database */
         this.booksService.insertBook(book).subscribe(() => { this.fetchData(); });
         /* Hide adding form. */
-        this.visibleForm = "";
+        this.visibleForm = '';
       } else {
-        alert("The same book exists!"); this.visibleForm = "";
+        alert('The same book exists!'); this.visibleForm = '';
       }
     } else {
-      alert('Please, fill in all fields!'); this.visibleForm = "";
+      alert('Please, fill in all fields!'); this.visibleForm = '';
     }
   }
 
@@ -127,12 +128,12 @@ export class AdminBooksComponent implements OnInit {
           }
         });
         /* Hide updating form. */
-        this.visibleForm = "";
+        this.visibleForm = '';
       } else {
-        alert("The same book exists!"); this.visibleForm = "";
+        alert('The same book exists!'); this.visibleForm = '';
       }
     } else {
-      alert("Input or select fields must not be empty!"); this.visibleForm = "";
+      alert('Input or select fields must not be empty!'); this.visibleForm = '';
     }
   }
 

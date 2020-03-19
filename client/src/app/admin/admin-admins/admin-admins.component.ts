@@ -67,7 +67,7 @@ export class AdminAdminsComponent implements OnInit {
         /* Add new data to the table of HTML-page. */
         let adminid = this.admins[this.admins.length - 1].UserID + 1;
         if (this.customers.find(customer => customer.UserID == adminid)) {
-          adminid++;
+          adminid = this.customers[this.customers.length - 1].UserID + 1;;
         }
         let adminuser = {
           UserID: adminid,
@@ -81,12 +81,12 @@ export class AdminAdminsComponent implements OnInit {
         /* INSERT query to the admins' table of the database */
         this.adminsService.insertAdmin(this.data).subscribe(() => { this.fetchData(); });
         /* Hide adding form. */
-        this.visibleForm = "";
+        this.visibleForm = '';
       } else {
-        alert("User with this email exists!"); this.visibleForm = "";
+        alert('User with this email exists!'); this.visibleForm = '';
       }
     } else {
-      alert('Please, fill in all fields or change your email address!'); this.visibleForm = "";
+      alert('Please, fill in all fields or change your email address!'); this.visibleForm = '';
     }
   }
 
@@ -108,12 +108,12 @@ export class AdminAdminsComponent implements OnInit {
           }
         }
         /* Hide updating form. */
-        this.visibleForm = "";
+        this.visibleForm = '';
       } else {
-        alert("User with this email exists!"); this.visibleForm = "";
+        alert('User with this email exists!'); this.visibleForm = '';
       }
     } else {
-      alert("Input fields must not be empty or incorrect!"); this.visibleForm = "";
+      alert('Input fields must not be empty or incorrect!'); this.visibleForm = '';
     }
   }
 

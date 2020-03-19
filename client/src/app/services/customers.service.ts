@@ -10,6 +10,7 @@ export interface Customers {
   Password: string;
   CountryID: number;
   PhoneNumber: string;
+  CardNumber: string;
 }
 
 @Injectable({

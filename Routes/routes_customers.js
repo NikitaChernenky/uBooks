@@ -16,7 +16,7 @@ routes.post('/create', (req, res) => { // Create a new customer in the database.
 });
 
 routes.get('/', (req, res) => { // Get all customers from the database.
-    mySqlConnection.query('SELECT Users.UserID, Users.Name, Users.Surname, Users.Email, Users.Password, Countries.CountryID, Countries.CountryName, Countries.CountryCode, Customers.PhoneNumber, Customers.CardNumber, Users.AdminRole FROM Users INNER JOIN Customers ON Users.UserID = Customers.UserID INNER JOIN Countries ON Customers.CountryID = Countries.CountryID;', (error, results, fields) => {
+    mySqlConnection.query('SELECT Users.UserID, Users.Name, Users.Surname, Users.Email, Users.Password, Countries.CountryID, Countries.CountryName, Countries.CountryCode, Customers.PhoneNumber, Customers.CardNumber, Users.AdminRole FROM Users INNER JOIN Customers ON Users.UserID = Customers.UserID INNER JOIN Countries ON Customers.CountryID = Countries.CountryID WHERE Users.AdminRole = 0;', (error, results, fields) => {
         if (!error) {
             res.send(results);
         } else {

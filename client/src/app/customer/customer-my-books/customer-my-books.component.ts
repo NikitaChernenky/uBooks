@@ -25,7 +25,7 @@ export class CustomerMyBooksComponent implements OnInit {
   data: any = {};
   changingData: any = {};
   visibleForm: string = '';
-
+6
   /* Using services. */
   constructor(private booksService: BooksService, private bookGenres: BookGenresService, private authService: AuthService, private router: Router, private activeLinkService: ActiveLinkService) {
     this.currentUser = this.authService.getSignedInUser();
@@ -101,10 +101,10 @@ export class CustomerMyBooksComponent implements OnInit {
         /* Hide adding form. */
         this.visibleForm = "";
       } else {
-        alert("The same book exists!"); this.visibleForm = "";
+        alert('The same book exists!'); this.visibleForm = '';
       }
     } else {
-      alert('Please, fill in all fields!'); this.visibleForm = "";
+      alert('Please, fill in all fields!'); this.visibleForm = '';
     }
   }
 
@@ -135,10 +135,10 @@ export class CustomerMyBooksComponent implements OnInit {
         /* Hide updating form. */
         this.visibleForm = "";
       } else {
-        alert("The same book exists!"); this.visibleForm = "";
+        alert('The same book exists!'); this.visibleForm = '';
       }
     } else {
-      alert("Input or select fields must not be empty!"); this.visibleForm = "";
+      alert('Input or select fields must not be empty!'); this.visibleForm = '';
     }
   }
 
@@ -175,7 +175,7 @@ export class CustomerMyBooksComponent implements OnInit {
 
   /* Check customer's card number availability. */
   cardNumberAvailability() {
-    if (this.currentUser.CardNumber != "" && this.currentUser.CardNumber != null) {
+    if (this.currentUser.CardNumber != '' && this.currentUser.CardNumber != null) {
       this.visibleForm = 'create';
     }
   }
