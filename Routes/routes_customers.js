@@ -4,7 +4,7 @@ const mySqlConnection = require('./connection');
 
 routes.post('/create', (req, res) => { // Create a new customer in the database. Using Stored Procedure.
     let customer = req.body;
-    mySqlConnection.query('INSERT INTO Users (`UserID`, `Name`, `Surname`, `Email`, `Password`, `AdminRole`) VALUES (?, ?, ?, ?, ?, 0); INSERT INTO Customers (`UserID`, `CountryID`, `PhoneNumber`, `CardNumber`) VALUES (?, ?, ?, NULL);', [customer.UserID, customer.Name, customer.Surname, customer.Email, customer.Password, customer.UserID, customer.CountryID, customer.PhoneNumber], (error, results, fields) => {
+    mySqlConnection.query('INSERT INTO Users (`UserID`, `Name`, `Surname`, `Email`, `Password`, `AdminRole`) VALUES (?, ?, ?, ?, ?, 0); INSERT INTO Customers (`UserID`, `CountryID`, `PhoneNumber`, `CardNumber`) VALUES (?, ?, ?, ?);', [customer.UserID, customer.Name, customer.Surname, customer.Email, customer.Password, customer.UserID, customer.CountryID, customer.PhoneNumber, customer.CardNumber], (error, results, fields) => {
         if (!error) {
             res.send('Created successfully!');
         } else {
