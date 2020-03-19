@@ -5,14 +5,29 @@ const mySqlConnection = require('./connection');
 routes.post('/create', (req, res) => { // Create a new customer in the database. Using Stored Procedure.
     let customer = req.body;
     //console.log(customer);
-    mySqlConnection.query('INSERT INTO Users (`UserID`, `Name`, `Surname`, `Email`, `Password`, `AdminRole`) VALUES (?, ?, ?, ?, ?, 0); INSERT INTO Customers (`UserID`, `CountryID`, `PhoneNumber`, `CardNumber`) VALUES (?, ?, ?, ?);', [customer.UserID, customer.Name, customer.Surname, customer.Email, customer.Password, customer.UserID, customer.CountryID, customer.PhoneNumber, customer.CardNumber], (error, results, fields) => {
+    
+    mySqlConnection.query('INSERT INTO Users (`UserID`, `Name`, `Surname`, `Email`, `Password`, `AdminRole`) VALUES (?, ?, ?, ?, ?, 0);', [customer.UserID, customer.Name, customer.Surname, customer.Email, customer.Password], (error, results, fields) => {
         if (!error) {
             res.send('Created successfully!');
         } else {
-            return res.status(400).send(req.body);
+            return res.status(400).send({
+                message: error
+            });
+        }
+    });
+    
+    mySqlConnection.query('INSERT INTO Customers (`UserID`, `CountryID`, `PhoneNumber`, `CardNumber`) VALUES (?, ?, ?, ?);', [customer.UserID, customer.CountryID, customer.PhoneNumber, customer.CardNumber], (error, results, fields) => {
+        if (!error) {
+            res.send('Created successfully!');
+        } else {
+            return res.status(400).send({
+                message: error
+            });
         }
     });
 });
+
+
 routes.get('/', (req, res) => { // Get all customers from the database.
     mySqlConnection.query('SELECT Users.UserID, Users.Name, Users.Surname, Users.Email, Users.Password, Countries.CountryID, Countries.CountryName, Countries.CountryCode, Customers.PhoneNumber, Customers.CardNumber, Users.AdminRole FROM Users INNER JOIN Customers ON Users.UserID = Customers.UserID INNER JOIN Countries ON Customers.CountryID = Countries.CountryID WHERE Users.AdminRole = 0;', (error, results, fields) => {
         if (!error) {
