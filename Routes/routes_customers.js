@@ -2,29 +2,10 @@ const express = require('express'); // Include Express module.
 const routes = express.Router();
 const mySqlConnection = require('./connection');
 
-routes.post('/create', (req, res) => { // Create a new customer in the database. Using Stored Procedure.
+app.post('/create', (req, res) => { // Create a new customer in the database. Using Stored Procedure.
     let customer = req.body;
-    //console.log(customer);
-    
-    mySqlConnection.query('INSERT INTO Users (`UserID`, `Name`, `Surname`, `Email`, `Password`, `AdminRole`) VALUES (?, ?, ?, ?, ?, 0);', [customer.UserID, customer.Name, customer.Surname, customer.Email, customer.Password], (error, results, fields) => {
-        if (!error) {
-            res.send('Created successfully!');
-        } else {
-            return res.status(400).send({
-                message: error
-            });
-        }
-    });
-    
-    mySqlConnection.query('INSERT INTO Customers (`UserID`, `CountryID`, `PhoneNumber`, `CardNumber`) VALUES (?, ?, ?, ?);', [customer.UserID, customer.CountryID, customer.PhoneNumber, customer.CardNumber], (error, results, fields) => {
-        if (!error) {
-            res.send('Created successfully!');
-        } else {
-            return res.status(400).send({
-                message: error
-            });
-        }
-    });
+    mySqlConnection.query('INSERT INTO Users (UserID, Name, Surname, Email, Password, AdminRole) VALUES (?, ?, ?, ?, ?, 0);', [customer.UserID, customer.Name, customer.Surname, customer.Email, customer.Password]);
+    mySqlConnection.query('INSERT INTO Customers (UserID, CountryID, PhoneNumber, CardNumber) VALUES (?, ?, ?, ?);', [customer.UserID, customer.CountryID, customer.PhoneNumber, customer.CardNumber]);
 });
 
 
