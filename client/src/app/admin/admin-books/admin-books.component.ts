@@ -137,8 +137,8 @@ export class AdminBooksComponent implements OnInit {
     }
   }
 
-  /* Get data from form for updating user's data. */
-  getBookForUpdate(id) {
+  //Update book
+  getBookForUpdate(id) { //[was called updateBook function before]
     /* Get book by ID from the database. */
     this.booksService.getBookByID(id).subscribe(book => {
       this.changingData.BookID = book[0].BookID;

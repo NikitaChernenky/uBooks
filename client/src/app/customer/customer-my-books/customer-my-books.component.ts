@@ -143,7 +143,7 @@ export class CustomerMyBooksComponent implements OnInit {
   }
 
   /* Get data from form for updating user's data. */
-  getBookForUpdate(id) {
+  getBookForUpdate(id) {  //[was called updateBook function before]
     /* Get book by ID from the database. */
     this.booksService.getBookByID(id).subscribe(book => {
       this.changingData.BookID = book[0].BookID;

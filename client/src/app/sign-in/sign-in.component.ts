@@ -74,10 +74,10 @@ export class SignInComponent implements OnInit {
       } else if (this.getUserByEmailPassword(this.customers, this.data.Email, this.data.Password) === 0) {
         this.router.navigate(['/customer/books']);
       } else {
-        alert("This user is not exist!");
+        alert("User does not exist");
       }
     } else {
-      alert("Input fields are empty or incorrect!");
+      alert("Input fields are empty or incorrect");
     }
 
   }
