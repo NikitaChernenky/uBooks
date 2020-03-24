@@ -1,6 +1,7 @@
 .table-dark {
   color: #fff;
   background: linear-gradient(to top, #ff7b00, #ffc145);
+  width: 1000px;
   margin: 5px auto 70px auto;
 }
 
