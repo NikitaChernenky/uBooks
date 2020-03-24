@@ -77,14 +77,12 @@ export class SignInComponent implements OnInit {
   /* Sign in to the system. */
   signInUser() {
     this.resetValidationFlags();
-    if (!this.validateEmail(this.data.Email)) {
+    if (this.validateEmail(this.data.Email) == false) {
       this.incorrectEmail = true;
     }
-    if (!this.validatePassword(this.data.Password)) {
-      this.incorrectPassword = true;
-    }
+
     /* Checking if data properties is not empty and email address validation. */
-    if (this.incorrectEmail == false && this.incorrectPassword == false ) {
+    if (this.incorrectEmail == false) {
       /* Getting a signed-up user. */
       let obj = this.authService.getSignedUpUser();
       /* If signed-up user is not empty, add him to customers' array. */
@@ -122,13 +120,8 @@ export class SignInComponent implements OnInit {
     return re.test(String(email).toLowerCase());
   }
 
-  validatePassword(password) { //password validatitor
-    var passwordRegEx = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/; //regular expression for password
-    return passwordRegEx.test(String(password));
-  }
 
   resetValidationFlags() {
-    this.incorrectPassword = false;
     this.incorrectEmail = false;
   }
 }
