@@ -88,9 +88,11 @@ export class SignUpComponent implements OnInit {
     this.resetValidationFlags();
     //validate name: if first or last name incorrect -> throw validation error
     if (!this.validateName(this.data.Name)) {
+      //validate first name
       this.incorrectName = true;
     }
     if (!this.validateName(this.data.Surname)) {
+      //validate last name
       this.incorrectName = true;
     }
 
@@ -107,12 +109,11 @@ export class SignUpComponent implements OnInit {
       this.incorrectPassword = true;
     }
     if (
-      this.data.CountryID != "none" &&
-      this.validateName(this.data.Name) &&
-      this.validateName(this.data.Surname) &&
-      this.validatePhoneNumber(this.data.PhoneNumber) &&
-      this.validateEmail(this.data.Email) &&
-      this.validatePassword(this.data.Password)
+      this.incorrectName == false &&
+      this.incorrectCountry == false &&
+      this.incorrectPhoneNumber == false &&
+      this.incorrectEmail == false &&
+      this.incorrectPassword == false
     ) {
       /* Checking if there are some users with the same email address. */
       if (
@@ -147,7 +148,8 @@ export class SignUpComponent implements OnInit {
   }
 
   validatePassword(password) {
-    var passwordRegEx = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    //password validatitor
+    var passwordRegEx = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/; //regular expression for password
     return passwordRegEx.test(String(password));
   }
 

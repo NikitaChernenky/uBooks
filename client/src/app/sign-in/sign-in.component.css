@@ -1,7 +1,3 @@
-html {
-   background: linear-gradient(to right, #fc4a1a, #f7b733) !important;
-}
-
 body {
   color: #999;
   font-family: 'Roboto', sans-serif;
@@ -107,12 +103,6 @@ body {
   top: 18px;
   font-size: 7px;
   position: absolute;
-}
-
-.bg {
-  background: linear-gradient(to right, #fc4a1a, #f7b733) !important;
-  width: 100%;
-  height: 803px;
 }
 
 .text-center a {
