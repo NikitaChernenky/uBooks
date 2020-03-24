@@ -19,11 +19,6 @@ export class SignInComponent implements OnInit {
   admins: any = [];
   customers: any = [];
 
-    //validation flags
-    incorrectPassword = false;
-    incorrectEmail = false;
- 
-
   /* Using services. */
   constructor(
     private adminsService: AdminsService,
@@ -76,13 +71,8 @@ export class SignInComponent implements OnInit {
 
   /* Sign in to the system. */
   signInUser() {
-    this.resetValidationFlags();
-    if (this.validateEmail(this.data.Email) == false) {
-      this.incorrectEmail = true;
-    }
-
     /* Checking if data properties is not empty and email address validation. */
-    if (this.incorrectEmail == false) {
+    if (this.validateEmail(this.data.Email) && this.data.Password) {
       /* Getting a signed-up user. */
       let obj = this.authService.getSignedUpUser();
       /* If signed-up user is not empty, add him to customers' array. */
@@ -118,10 +108,5 @@ export class SignInComponent implements OnInit {
   validateEmail(email) {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
-  }
-
-
-  resetValidationFlags() {
-    this.incorrectEmail = false;
   }
 }
