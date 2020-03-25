@@ -1,10 +1,19 @@
+/* 
+Mykyta Chernenky
+200367631
+CS 476 - Software Development
+uBooks
+
+[Customer] Cart  -  CSS
+*/
+
 .quantity {
   float: left;
   margin-right: 15px;
   background-color: #eee;
   position: relative;
   width: 80px;
-  overflow: hidden
+  overflow: hidden;
 }
 
 .quantity input {
@@ -18,7 +27,7 @@
   font-size: 20px;
   border: 0;
   outline: 0;
-  background-color: #F6F6F6
+  background-color: #f6f6f6;
 }
 
 .quantity input.qty {
@@ -31,7 +40,7 @@
   font-weight: 400;
   font-size: 15px;
   border-radius: 0;
-  background-clip: padding-box
+  background-clip: padding-box;
 }
 
 .quantity .minus,
@@ -51,16 +60,16 @@
   right: 0;
   padding: 0;
   width: 25px;
-  z-index: 3
+  z-index: 3;
 }
 
 .quantity .minus:hover,
 .quantity .plus:hover {
-  background-color: #dad8da
+  background-color: #dad8da;
 }
 
 .quantity .minus {
-  bottom: 0
+  bottom: 0;
 }
 
 .shopping-cart {

@@ -1,3 +1,11 @@
+/* 
+Mykyta Chernenky
+200367631
+CS 476 - Software Development
+uBooks
+
+[Customer] Book Catalog Page -  TypeScript
+*/
 /* Import all libraries and services. */
 import { Component, OnInit, Renderer2 } from "@angular/core";
 import { BooksService } from "src/app/services/books.service";
@@ -35,7 +43,7 @@ export class CustomerBooksComponent implements OnInit {
     private cartService: CartService,
     private renderer: Renderer2
   ) {
-    this.renderer.setStyle(document.body, 'background', 'white'); //apply background for the entire component
+    this.renderer.setStyle(document.body, "background", "white"); //apply background for the entire component
   }
 
   /* Perform component initialization. */

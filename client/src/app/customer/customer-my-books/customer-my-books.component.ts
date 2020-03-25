@@ -1,3 +1,12 @@
+/* 
+Mykyta Chernenky
+200367631
+CS 476 - Software Development
+uBooks
+
+[Customer] Sell Books Page  -  TypeScript
+*/
+
 /* Import all modules, libraries and services. */
 import { Component, OnInit } from '@angular/core';
 import { BooksService } from 'src/app/services/books.service';
@@ -188,14 +197,14 @@ export class CustomerMyBooksComponent implements OnInit {
 
   /* Get the name and format of image after clicking the "upload image" button. Form an image URL-link. */
   onSelectFile(event, action) {
-    if (action == 'create') {
+    if (action == 'create') { //upload new image
       if (event.target.files[0]) {
-        this.data.BookCover = 'assets/img/' + event.target.files[0].name;
+        this.data.BookCover = 'assets/img/' + event.target.files[0].name; 
       } else {
         this.data.BookCover = '';
       }
     }
-    if (action == 'update') {
+    if (action == 'update') { //update existing image
       if (event.target.files[0]) {
         this.changingData.BookCover = 'assets/img/' + event.target.files[0].name;
       } else {

@@ -1,3 +1,12 @@
+/*
+Mykyta Chernenky
+200367631
+CS 476 - Software Development
+uBooks
+
+[Service] Active Link
+This service was made to underline the currently opened apge in the dashboard
+ */
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -20,19 +29,19 @@ export class ActiveLinkService {
 
   /* Set an active link from customer's page. */
   setCustomerActiveLink(link) {
-    if (link == 'books') {
+    if (link === 'books') {
       this.activecustomer = 'books';
     }
-    if (link == 'cart') {
+    if (link === 'cart') {
       this.activecustomer = 'cart';
     }
-    if (link == 'mybooks') {
+    if (link === 'mybooks') {
       this.activecustomer = 'mybooks';
     }
-    if (link == 'orders') {
+    if (link === 'orders') {
       this.activecustomer = 'orders';
     }
-    if (link == 'account') {
+    if (link === 'account') {
       this.activecustomer = 'account';
     }
   }
@@ -44,19 +53,19 @@ export class ActiveLinkService {
 
   /* Set an active link from admin's page. */
   setAdminActiveLink(link) {
-    if (link == 'admins') {
+    if (link === 'admins') {
       this.activeadmin = 'admins';
     }
-    if (link == 'customers') {
+    if (link === 'customers') {
       this.activeadmin = 'customers';
     }
-    if (link == 'countries') {
+    if (link === 'countries') {
       this.activeadmin = 'countries';
     }
-    if (link == 'book-genres') {
+    if (link === 'book-genres') {
       this.activeadmin = 'book-genres';
     }
-    if (link == 'books') {
+    if (link === 'books') {
       this.activeadmin = 'books';
     }
     if (link == 'orders') {

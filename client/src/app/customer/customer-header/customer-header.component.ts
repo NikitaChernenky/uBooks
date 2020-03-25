@@ -1,3 +1,12 @@
+/* 
+Mykyta Chernenky
+200367631
+CS 476 - Software Development
+uBooks
+
+[Customer] Header  -  TypeScript
+*/
+
 /* Import all libraries and services. */
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
@@ -31,7 +40,7 @@ export class CustomerHeaderComponent implements OnInit {
   /* Perform component initialization. */
   ngOnInit() {
     if ((Object.entries(this.currentUser).length === 0 && this.currentUser.constructor === Object)) {
-      this.router.navigate(['/sign-in']);
+      this.router.navigate(['/sign-in']); // if user value is not stired in session then redirect back to sign in page
     }
   }
 

@@ -1,3 +1,13 @@
+/*
+Mykyta Chernenky
+200367631
+CS 476 - Software Development
+uBooks
+
+[Customer] Orders Page  -  TypeScript
+ */
+
+
 /* Import all modules, libraries and services. */
 import { Component, OnInit } from '@angular/core';
 import { OrdersService } from 'src/app/services/orders.service';
@@ -31,7 +41,7 @@ export class CustomerOrdersComponent implements OnInit {
       this.orders = order;
       /* Group customer's orders by OrderID using groupBy function. */
       this.orders = this.groupBy(this.orders, "OrderID");
-      /* Calculating the total price of each order of the customer. */
+      /* Calculating total price for each order of the customer. */
       for (let order of this.orders) {
         let totalprice = (order.reduce(function (prev, cur) { return prev + cur.TotalPrice; }, 0)).toFixed(2);
         order.forEach(book => { book.TotalPrice = totalprice; });

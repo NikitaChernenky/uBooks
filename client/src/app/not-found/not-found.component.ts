@@ -1,3 +1,12 @@
+/*
+Mykyta Chernenky
+200367631
+CS 476 - Software Development
+uBooks
+
+[Page Not Found]  -  TypeScript
+ */
+
 /* Import all libraries. */
 import { Component, OnInit } from '@angular/core';
 

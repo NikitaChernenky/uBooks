@@ -7,34 +7,37 @@ uBooks
 Admin Table TypeScript file
 */
 
-
 /* Import all modules, libraries and services. */
-import { Component, OnInit, Renderer2 } from '@angular/core';
-import { AdminsService } from 'src/app/services/admins.service';
-import { CustomersService } from 'src/app/services/customers.service';
-import { AuthService } from 'src/app/services/auth.service';
+import { Component, OnInit, Renderer2 } from "@angular/core";
+import { AdminsService } from "src/app/services/admins.service";
+import { CustomersService } from "src/app/services/customers.service";
+import { AuthService } from "src/app/services/auth.service";
 
 /* Using the @Component decorator to make a class a component. */
 @Component({
-  selector: 'app-admin-admins',
-  templateUrl: './admin-admins.component.html',
-  styleUrls: ['./admin-admins.component.css']
+  selector: "app-admin-admins",
+  templateUrl: "./admin-admins.component.html",
+  styleUrls: ["./admin-admins.component.css"]
 })
 
 /* Module view using class. */
 export class AdminAdminsComponent implements OnInit {
-
   /* Declaration of all variables. */
   admins: any = [];
   customers: any = [];
   data: any = {};
   changingData: any = {};
-  visibleForm: string = '';
+  visibleForm: string = "";
 
   /* Using services. */
-  constructor(private adminsService: AdminsService, private customersService: CustomersService, private authService: AuthService, private renderer: Renderer2) {
-    this.renderer.setStyle(document.body, 'background', 'white'); //apply white background for the entire component
-   }
+  constructor(
+    private adminsService: AdminsService,
+    private customersService: CustomersService,
+    private authService: AuthService,
+    private renderer: Renderer2
+  ) {
+    this.renderer.setStyle(document.body, "background", "white"); //apply white background for the entire component
+  }
 
   /* Perform component initialization. */
   ngOnInit() {
@@ -44,20 +47,24 @@ export class AdminAdminsComponent implements OnInit {
   /* Load data to variable using admin users service. */
   fetchData() {
     /* Load all data to variable using admins service. */
-    this.adminsService.getAllAdmins().subscribe(data => {
-      this.admins = data;
-    },
+    this.adminsService.getAllAdmins().subscribe(
+      data => {
+        this.admins = data;
+      },
       err => {
         console.log(err);
-      });
+      }
+    );
 
     /* Load all data to variable using customers' service. */
-    this.customersService.getAllCustomers().subscribe(customer => {
-      this.customers = customer;
-    },
+    this.customersService.getAllCustomers().subscribe(
+      customer => {
+        this.customers = customer;
+      },
       err => {
         console.log(err);
-      });
+      }
+    );
   }
 
   /* Reset create form after button clicking. */
@@ -73,13 +80,21 @@ export class AdminAdminsComponent implements OnInit {
   /* Create a new admin using service. Writing data to the table of database. */
   createAdmin() {
     /* Checking if data properties is not empty and email address validation */
-    if (this.data.Name && this.data.Surname && this.validateEmail(this.data.Email) && this.data.Password) {
+    if (
+      this.data.Name &&
+      this.data.Surname &&
+      this.validateEmail(this.data.Email) &&
+      this.data.Password
+    ) {
       /* Checking if there are some users with the same email address. */
-      if (!this.admins.find(admin => admin.Email == this.data.Email) && !this.customers.find(customer => customer.Email == this.data.Email)) {
+      if (
+        !this.admins.find(admin => admin.Email == this.data.Email) &&
+        !this.customers.find(customer => customer.Email == this.data.Email)
+      ) {
         /* Add new data to the table of HTML-page. */
         let adminid = this.admins[this.admins.length - 1].UserID + 1;
         if (this.customers.find(customer => customer.UserID == adminid)) {
-          adminid = this.customers[this.customers.length - 1].UserID + 1;;
+          adminid = this.customers[this.customers.length - 1].UserID + 1;
         }
         let adminuser = {
           UserID: adminid,
@@ -91,25 +106,45 @@ export class AdminAdminsComponent implements OnInit {
         this.admins.push(adminuser);
         this.authService.setSignedUpUser(adminuser);
         /* INSERT query to the admins' table of the database */
-        this.adminsService.insertAdmin(this.data).subscribe(() => { this.fetchData(); });
+        this.adminsService.insertAdmin(this.data).subscribe(() => {
+          this.fetchData();
+        });
         /* Hide adding form. */
-        this.visibleForm = '';
+        this.visibleForm = "";
       } else {
-        alert('User with this email exists!'); this.visibleForm = '';
+        alert("User with this email exists!");
+        this.visibleForm = "";
       }
     } else {
-      alert('Please, fill in all fields or change your email address!'); this.visibleForm = '';
+      alert("Please, fill in all fields or change your email address!");
+      this.visibleForm = "";
     }
   }
 
   /* Update admin user data using a service. */
   updateAdmin() {
     /* Checking if data properties is not empty and if email address validation */
-    if (this.validateEmail(this.changingData.Email) && this.changingData.Password && this.changingData.Name && this.changingData.Surname) {
+    if (
+      this.validateEmail(this.changingData.Email) &&
+      this.changingData.Password &&
+      this.changingData.Name &&
+      this.changingData.Surname
+    ) {
       /* Checking if there are some users with the same email address. */
-      if (!this.admins.find(admin => admin.Email == this.changingData.Email && admin.UserID != this.changingData.UserID) && !this.customers.find(customer => customer.Email == this.changingData.Email)) {
+      if (
+        !this.admins.find(
+          admin =>
+            admin.Email == this.changingData.Email &&
+            admin.UserID != this.changingData.UserID
+        ) &&
+        !this.customers.find(
+          customer => customer.Email == this.changingData.Email
+        )
+      ) {
         /* UPDATE query to the admins' table of the database */
-        this.adminsService.updateAdmin(this.changingData).subscribe(() => { this.fetchData(); });
+        this.adminsService.updateAdmin(this.changingData).subscribe(() => {
+          this.fetchData();
+        });
         /* Update admin's data. */
         for (var i = 0; i < this.admins.length; i++) {
           if (this.changingData.UserID == this.admins[i].UserID) {
@@ -120,34 +155,40 @@ export class AdminAdminsComponent implements OnInit {
           }
         }
         /* Hide updating form. */
-        this.visibleForm = '';
+        this.visibleForm = "";
       } else {
-        alert('User with this email exists!'); this.visibleForm = '';
+        alert("User with this email exists!");
+        this.visibleForm = "";
       }
     } else {
-      alert('Input fields must not be empty or incorrect!'); this.visibleForm = '';
+      alert("Input fields must not be empty or incorrect!");
+      this.visibleForm = "";
     }
   }
 
   /* Get data from form for updating user's data. */
   getAdminForUpdate(id) {
     /* Get admin by ID from the database. */
-    this.adminsService.getAdminByID(id).subscribe(admin => {
-      this.changingData.UserID = admin[0].UserID;
-      this.changingData.Name = admin[0].Name;
-      this.changingData.Surname = admin[0].Surname;
-      this.changingData.Email = admin[0].Email;
-      this.changingData.Password = admin[0].Password;
-    },
+    this.adminsService.getAdminByID(id).subscribe(
+      admin => {
+        this.changingData.UserID = admin[0].UserID;
+        this.changingData.Name = admin[0].Name;
+        this.changingData.Surname = admin[0].Surname;
+        this.changingData.Email = admin[0].Email;
+        this.changingData.Password = admin[0].Password;
+      },
       err => {
         console.log(err);
-      });
+      }
+    );
   }
 
   /* Remove selected admin from the table of database. */
   deleteAdmin(id) {
     /* DELETE query to the admins table of the database */
-    this.adminsService.deleteAdmin(id).subscribe(() => { this.fetchData(); });
+    this.adminsService.deleteAdmin(id).subscribe(() => {
+      this.fetchData();
+    });
     /* Delete table entry by admin ID. */
     this.admins = this.admins.filter(admin => admin.UserID != id);
   }

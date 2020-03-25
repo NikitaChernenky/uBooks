@@ -1,19 +1,28 @@
+/* 
+Mykyta Chernenky
+200367631
+CS 476 - Software Development
+uBooks
+
+[Customer] Book Catalog Page -  CSS
+*/
+
 body {
-  background-color: #eeeeee
+  background-color: #eeeeee;
 }
 
 .container {
   margin-top: 0px;
-  margin-bottom: 50px
+  margin-bottom: 50px;
 }
 
 a {
-  text-decoration: none !important
+  text-decoration: none !important;
 }
 
 .card-product-list,
 .card-product-grid {
-  margin-bottom: 0
+  margin-bottom: 0;
 }
 
 .card {
@@ -30,48 +39,48 @@ a {
   background-color: #fff;
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 0.10rem;
-  margin-top: 10px
+  border-radius: 0.1rem;
+  margin-top: 10px;
 }
 
 .card-product-grid:hover {
   -webkit-box-shadow: 0 4px 15px rgba(153, 153, 153, 0.3);
   box-shadow: 0 4px 15px rgba(153, 153, 153, 0.3);
-  -webkit-transition: .3s;
-  transition: .3s
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
 }
 
 .card-product-grid .img-wrap {
   border-radius: 0.2rem 0.2rem 0 0;
-  height: 220px
+  height: 220px;
 }
 
 .card .img-wrap {
-  overflow: hidden
+  overflow: hidden;
 }
 
 .card-lg .img-wrap {
-  height: 280px
+  height: 280px;
 }
 
 .card-product-grid .img-wrap {
   border-radius: 0.2rem 0.2rem 0 0;
   height: 490px;
-  padding: 16px
+  padding: 16px;
 }
 
-[class*='card-product'] .img-wrap img {
+[class*="card-product"] .img-wrap img {
   height: 100%;
   max-width: 100%;
   width: auto;
   display: inline-block;
   -o-object-fit: cover;
-  object-fit: cover
+  object-fit: cover;
 }
 
 .img-wrap {
   text-align: center;
-  display: block
+  display: block;
 }
 
 .card-product-grid .info-wrap {
@@ -80,9 +89,9 @@ a {
   height: 135px !important;
 }
 
-[class*='card-product'] a.title {
+[class*="card-product"] a.title {
   color: #212529;
-  display: block
+  display: block;
 }
 
 .card-product-grid .bottom-wrap {
@@ -106,7 +115,7 @@ a {
   padding: 0.45rem 0.85rem;
   font-size: 1rem;
   line-height: 1.5;
-  border-radius: 0.2rem
+  border-radius: 0.2rem;
 }
 
 .btn-primary {
@@ -124,7 +133,7 @@ a {
 }
 
 .fa {
-  color: #FFF;
+  color: #fff;
 }
 
 a.title {

@@ -9,7 +9,7 @@ uBooks
 import { User } from "./user"; //import user class
 
 class Customer { //initiate customer class
-  constructor(customerID1: number, user1: User) {} //2 parameters: customerID, and User object
+  constructor(customerID: number, user: User) {} //2 parameters: customerID, and User object
   create(               //create Customer function
     customerID: number,
     login: string,
