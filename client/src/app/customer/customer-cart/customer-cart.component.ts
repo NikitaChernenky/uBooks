@@ -73,7 +73,7 @@ export class CustomerCartComponent implements OnInit {
         BookID: this.books[i].BookID,
         Quantity: this.books[i].BookQuantityToBuy,
         OrderDate: date,
-        OrderStatus: "expected"
+        OrderStatus: "pending"
       }).subscribe(() => { this.fetchData(); });
     }
     /* Reset all values of variables. */

@@ -51,7 +51,7 @@
         </div>
       </div>
       <!-- Buttons for data processing. -->
-      <div class="pull-right" style="margin: 10px" *ngIf="order[0].OrderStatus == 'expected'">
+      <div class="pull-right" style="margin: 10px" *ngIf="order[0].OrderStatus == 'pending'">
         <div class="pull-right " style="margin: 5px;">
           <a class="status confirm" title="Confirm" (click)="confirmOrder(order[0].OrderID);">Confirm order <i
               class="fa fa-thumbs-up"></i></a>
