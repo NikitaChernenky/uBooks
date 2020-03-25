@@ -20,7 +20,7 @@ export class Subject {
     admins: any;
     authService: any;
     router: any;
-    countries: import("c:/Users/new pc/Downloads/Telegram Desktop/u-books-angular/client/src/app/services/countries.service").Countries[];
+    countries: any;
     constructor(
         private countriesService: CountriesService,
         private adminsService: AdminsService,
