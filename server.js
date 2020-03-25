@@ -31,16 +31,15 @@ app.use("/bookgenres", bookGenresRoutes);
 
 /* App listening on port. */
 app.use(express.static("client/dist/book-store"));
-
-app.listen(process.env.PORT || 8080); // launch server on heroku with its own port
 app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname));
 });
 
-console.log('Console listening');
 /*
 app.listen(3000, function () {
 	console.log('API app started on localhost:3000!');
 });
 */
 
+
+app.listen(process.env.PORT || 8080); // launch server on heroku with its own port
