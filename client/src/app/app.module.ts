@@ -31,8 +31,11 @@ import { CustomerOrdersComponent } from './customer/customer-orders/customer-ord
 import { CustomerBooksComponent } from './customer/customer-books/customer-books.component';
 import { CustomerCartComponent } from './customer/customer-cart/customer-cart.component';
 import { CustomerMyBooksComponent } from './customer/customer-my-books/customer-my-books.component';
-
+import { Routes, RouterModule } from '@angular/router';
 /* Decorator function NgModule.*/
+const routes: Routes = [
+
+];
 @NgModule({
   /* View classes that belong to the module. */
   declarations: [
@@ -60,7 +63,8 @@ import { CustomerMyBooksComponent } from './customer/customer-my-books/customer-
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    RouterModule.forRoot(routes, { useHash: true })
   ],
   /* Classes that create services used by the module. */
   providers: [
