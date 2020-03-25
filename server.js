@@ -2,7 +2,7 @@
 const express = require("express");
 const app = express();
 const path = require('path');
-const cors = require("cors");
+//const cors = require("cors");
 const bodyParser = require("body-parser");
 /* Loading route modules. */
 const booksRoutes = require("./Routes/routes_books");
@@ -13,10 +13,10 @@ const adminUsersRoutes = require("./Routes/routes_admin_users");
 const bookGenresRoutes = require("./Routes/routes_book_genres");
 /* Using included modules. */
 
-app.use(cors());
+//app.use(cors());
 app.use(
   bodyParser.urlencoded({
-    extended: false
+    extended: true
   })
 );
 app.use(bodyParser.json());
