@@ -1,5 +1,5 @@
 /* Import all modules, libraries and services. */
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { AdminsService } from 'src/app/services/admins.service';
 import { CustomersService } from 'src/app/services/customers.service';
 import { AuthService } from 'src/app/services/auth.service';
@@ -22,7 +22,9 @@ export class AdminAdminsComponent implements OnInit {
   visibleForm: string = '';
 
   /* Using services. */
-  constructor(private adminsService: AdminsService, private customersService: CustomersService, private authService: AuthService) { }
+  constructor(private adminsService: AdminsService, private customersService: CustomersService, private authService: AuthService, private renderer: Renderer2) {
+    this.renderer.setStyle(document.body, 'background', 'white'); //apply background for the entire component
+   }
 
   /* Perform component initialization. */
   ngOnInit() {
