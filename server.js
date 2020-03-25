@@ -31,8 +31,9 @@ app.use("/bookgenres", bookGenresRoutes);
 
 /* App listening on port. */
 app.use(express.static("client/dist/book-store"));
+app.listen(process.env.PORT || 8080); // launch server on heroku with its own port
 app.get("/*", (req, res) => {
-  res.sendFile(path.join(__dirname));
+  res.sendFile(path.join(__dirname + "client/dist/book-store"));
 });
 
 /*
@@ -42,4 +43,4 @@ app.listen(3000, function () {
 */
 
 
-app.listen(process.env.PORT || 8080); // launch server on heroku with its own port
+
