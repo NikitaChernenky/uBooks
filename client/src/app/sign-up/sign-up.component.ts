@@ -1,5 +1,5 @@
 /* Import all modules, libraries and services. */
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Renderer2 } from "@angular/core";
 import { AdminsService } from "../services/admins.service";
 import { CustomersService } from "../services/customers.service";
 import { Router } from "@angular/router";
@@ -34,8 +34,11 @@ export class SignUpComponent implements OnInit {
     private adminsService: AdminsService,
     private customersService: CustomersService,
     private router: Router,
-    private authService: AuthService
-  ) {}
+    private authService: AuthService,
+    private renderer: Renderer2
+  ) {
+    this.renderer.setStyle(document.body, 'background', 'linear-gradient(to right, #fc4a1a, #f7b733)'); //apply background for the entire component
+  }
 
   /* Perform component initialization. */
   ngOnInit() {

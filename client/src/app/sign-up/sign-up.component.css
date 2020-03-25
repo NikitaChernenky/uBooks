@@ -104,11 +104,6 @@ body {
   position: absolute;
 }
 
-.bg {
-  background: linear-gradient(#fc4a1a, #f7b733) !important;
-  width: 100%;
-  height: 803px;
-}
 
 .text-center a {
   font-weight: bold;
