@@ -28,9 +28,9 @@ app.use("/bookgenres", bookGenresRoutes);
 
 /* App listening on port. */
 app.use(express.static('client/dist/book-store'));
-app.get('/*', (req, res) => {
-	res.sendFile(path.join(__dirname));
-})
+// app.get('/*', (req, res) => {
+//	res.sendFile(path.join(__dirname));
+//})
 
 /*
 app.listen(3000, function () {
