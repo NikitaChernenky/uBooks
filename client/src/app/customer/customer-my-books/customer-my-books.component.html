@@ -5,8 +5,7 @@ CS 476 - Software Development
 uBooks
 
 [Customer] Sell Books Page -  HTML
---> 
-
+-->
 
 <!-- Customer's page navbar -->
 <app-customer-header></app-customer-header>
@@ -15,94 +14,311 @@ uBooks
 <p *ngIf="books.length == 0" id="empty">
   <i class="fa fa-book" aria-hidden="true"></i>
   Book list is empty!
-  <button type="button" class="btn btn-info font-weight-light add-new" style="margin-left: 10px;"
-    (click)="cardNumberAvailability()" data-toggle="modal" data-target="#myModal">
+  <button
+    type="button"
+    class="btn btn-info font-weight-light add-new"
+    style="margin-left: 10px;"
+    (click)="cardNumberAvailability()"
+    data-toggle="modal"
+    data-target="#myModal"
+  >
     <i class="fa fa-plus"></i> Add Book
   </button>
 </p>
 
 <!-- Modal window. -->
-<div id="myModal" class="modal fade"
-  *ngIf="!(this.currentUser.CardNumber != '' && this.currentUser.CardNumber != null)">
+<div
+  id="myModal"
+  class="modal fade"
+  *ngIf="
+    !(this.currentUser.CardNumber != '' && this.currentUser.CardNumber != null)
+  "
+>
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">A credit card number is required to add a new book.</h4>
+        <h4 class="modal-title">
+          A credit card number is required to add a new book.
+        </h4>
       </div>
       <div class="modal-body">
         Please add card number in profile editing.
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-info font-weight-light add-new" style="margin: 0;" data-toggle="modal"
-          data-target="#myModal" data-dismiss="modal" (click)="openAccountSettings();">
+        <button
+          type="button"
+          class="btn btn-info font-weight-light add-new"
+          style="margin: 0;"
+          data-toggle="modal"
+          data-target="#myModal"
+          data-dismiss="modal"
+          (click)="openAccountSettings()"
+        >
           Open account settings
         </button>
-        <button class="btn btn-default" type="button" data-dismiss="modal">Close</button>
+        <button class="btn btn-default" type="button" data-dismiss="modal">
+          Close
+        </button>
       </div>
     </div>
   </div>
 </div>
 
 <!-- Form for adding a new book. -->
-<form autocomplete="off" class="add-form text-center border border-light p-5"
-  (ngSubmit)="createBook(); resetCreateForm();" name="create-form" *ngIf="visibleForm == 'create'">
+<form
+  autocomplete="off"
+  class="add-form text-center border border-light p-5"
+  (ngSubmit)="createBook(); resetCreateForm()"
+  name="create-form"
+  *ngIf="visibleForm == 'create'"
+>
   <h2>Add new book</h2>
-  <input type="text" id="isbn" name="isbn" [(ngModel)]="data.ISBN" class="form-control mb-4" placeholder="ISBN">
-  <input type="text" id="bookcover" name="bookcover" [(ngModel)]="data.BookCover" class="form-control mb-4"
-    placeholder="URL of book's cover">
-  <input type='file' (change)="onSelectFile($event, 'create')">
-  <input type="text" id="booktitle" name="booktitle" [(ngModel)]="data.BookTitle" class="form-control mb-4"
-    placeholder="Book title">
-  <input type="text" id="bookauthor" name="bookauthor" [(ngModel)]="data.BookAuthor" class="form-control mb-4"
-    placeholder="Book author">
-  <select class="custom-select mb-4" [(ngModel)]="data.BookGenreID" name="selectedBookGenre">
+  <input
+    type="text"
+    id="isbn"
+    name="isbn"
+    [(ngModel)]="data.ISBN"
+    class="form-control mb-4"
+    placeholder="ISBN"
+  />
+  <input
+    type="text"
+    id="bookcover"
+    name="bookcover"
+    [(ngModel)]="data.BookCover"
+    class="form-control mb-4"
+    placeholder="URL of book's cover"
+  />
+  <input type="file" (change)="onSelectFile($event, 'create')" />
+  <input
+    type="text"
+    id="booktitle"
+    name="booktitle"
+    [(ngModel)]="data.BookTitle"
+    class="form-control mb-4"
+    placeholder="Book title"
+  />
+  <input
+    type="text"
+    id="bookauthor"
+    name="bookauthor"
+    [(ngModel)]="data.BookAuthor"
+    class="form-control mb-4"
+    placeholder="Book author"
+  />
+  <select
+    class="custom-select mb-4"
+    [(ngModel)]="data.BookGenreID"
+    name="selectedBookGenre"
+  >
     <option selected disabled value="none">Select book genre...</option>
-    <option *ngFor="let bookgenre of bookgenres" value={{bookgenre.BookGenreID}}> {{bookgenre.BookGenre}}</option>
+    <option
+      *ngFor="let bookgenre of bookgenres"
+      value="{{ bookgenre.BookGenreID }}"
+    >
+      {{ bookgenre.BookGenre }}</option
+    >
   </select>
-  <input type="number" min="1900" max="2020" id="publicationyear" name="publicationyear"
-    [(ngModel)]="data.PublicationYear" class="form-control mb-4" placeholder="Publication year">
-  <input type="text" id="bookoverview" name="bookoverview" [(ngModel)]="data.BookOverview" class="form-control mb-4"
-    placeholder="Book overview">
-  <input type="number" min="0" id="quantity" name="quantity" [(ngModel)]="data.Quantity" class="form-control mb-4"
-    placeholder="Quantity">
-  <input type="number" min="0" id="price" name="price" [(ngModel)]="data.Price" class="form-control mb-4"
-    placeholder="Price">
-  <button class="btn btn-info" type="submit"
-    *ngIf="data.ISBN && data.BookCover && data.BookTitle && data.BookAuthor && data.BookGenreID != 'none' && data.PublicationYear && data.BookOverview && data.Quantity && data.Price">Add</button>
-  <button class="btn btn-info reset" (click)="resetCreateForm(); visibleForm = ''"
-    [ngClass]="{'reset1': !(data.ISBN && data.BookCover && data.BookTitle && data.BookAuthor && data.BookGenreID != 'none' && data.PublicationYear && data.BookOverview && data.Quantity && data.Price)}"><i
-      class="fa fa-times"></i></button>
+  <input
+    type="number"
+    min="1900"
+    max="2020"
+    id="publicationyear"
+    name="publicationyear"
+    [(ngModel)]="data.PublicationYear"
+    class="form-control mb-4"
+    placeholder="Publication year"
+  />
+  <input
+    type="text"
+    id="bookoverview"
+    name="bookoverview"
+    [(ngModel)]="data.BookOverview"
+    class="form-control mb-4"
+    placeholder="Book overview"
+  />
+  <input
+    type="number"
+    min="0"
+    id="quantity"
+    name="quantity"
+    [(ngModel)]="data.Quantity"
+    class="form-control mb-4"
+    placeholder="Quantity"
+  />
+  <input
+    type="number"
+    min="0"
+    id="price"
+    name="price"
+    [(ngModel)]="data.Price"
+    class="form-control mb-4"
+    placeholder="Price"
+  />
+  <button
+    class="btn btn-info"
+    type="submit"
+    *ngIf="
+      data.ISBN &&
+      data.BookCover &&
+      data.BookTitle &&
+      data.BookAuthor &&
+      data.BookGenreID != 'none' &&
+      data.PublicationYear &&
+      data.BookOverview &&
+      data.Quantity &&
+      data.Price
+    "
+  >
+    Add
+  </button>
+  <button
+    class="btn btn-info reset"
+    (click)="resetCreateForm(); visibleForm = ''"
+    [ngClass]="{
+      reset1: !(
+        data.ISBN &&
+        data.BookCover &&
+        data.BookTitle &&
+        data.BookAuthor &&
+        data.BookGenreID != 'none' &&
+        data.PublicationYear &&
+        data.BookOverview &&
+        data.Quantity &&
+        data.Price
+      )
+    }"
+  >
+    <i class="fa fa-times"></i>
+  </button>
 </form>
 
 <!-- Form for updating existing book info. -->
-<form autocomplete="off" class="update-form text-center border border-light p-5"
-  (ngSubmit)="updateBook(); resetUpdateForm();" name="update-form" *ngIf="visibleForm == 'update'">
+<form
+  autocomplete="off"
+  class="update-form text-center border border-light p-5"
+  (ngSubmit)="updateBook(); resetUpdateForm()"
+  name="update-form"
+  *ngIf="visibleForm == 'update'"
+>
   <h2>Update book</h2>
-  <input type="text" id="isbn" name="isbn" [(ngModel)]="changingData.ISBN" class="form-control mb-4" placeholder="ISBN">
-  <input type="text" id="bookcover" name="bookcover" [(ngModel)]="changingData.BookCover" class="form-control mb-4"
-    placeholder="URL of book's cover">
-  <input type='file' (change)="onSelectFile($event, 'update')">
-  <input type="text" id="booktitle" name="booktitle" [(ngModel)]="changingData.BookTitle" class="form-control mb-4"
-    placeholder="Book title">
-  <input type="text" id="bookauthor" name="bookauthor" [(ngModel)]="changingData.BookAuthor" class="form-control mb-4"
-    placeholder="Book author">
-  <select class="custom-select mb-4" [(ngModel)]="changingData.BookGenreID" name="selectedBookGenre">
+  <input
+    type="text"
+    id="isbn"
+    name="isbn"
+    [(ngModel)]="changingData.ISBN"
+    class="form-control mb-4"
+    placeholder="ISBN"
+  />
+  <input
+    type="text"
+    id="bookcover"
+    name="bookcover"
+    [(ngModel)]="changingData.BookCover"
+    class="form-control mb-4"
+    placeholder="URL of book's cover"
+  />
+  <input type="file" (change)="onSelectFile($event, 'update')" />
+  <input
+    type="text"
+    id="booktitle"
+    name="booktitle"
+    [(ngModel)]="changingData.BookTitle"
+    class="form-control mb-4"
+    placeholder="Book title"
+  />
+  <input
+    type="text"
+    id="bookauthor"
+    name="bookauthor"
+    [(ngModel)]="changingData.BookAuthor"
+    class="form-control mb-4"
+    placeholder="Book author"
+  />
+  <select
+    class="custom-select mb-4"
+    [(ngModel)]="changingData.BookGenreID"
+    name="selectedBookGenre"
+  >
     <option selected disabled value="none">Select book genre...</option>
-    <option *ngFor="let bookgenre of bookgenres" value={{bookgenre.BookGenreID}}>{{bookgenre.BookGenre}}</option>
+    <option
+      *ngFor="let bookgenre of bookgenres"
+      value="{{ bookgenre.BookGenreID }}"
+      >{{ bookgenre.BookGenre }}</option
+    >
   </select>
-  <input type="number" min="1900" max="2020" id="publicationyear" name="publicationyear"
-    [(ngModel)]="changingData.PublicationYear" class="form-control mb-4" placeholder="Book author">
-  <input type="text" id="bookoverview" name="bookoverview" [(ngModel)]="changingData.BookOverview"
-    class="form-control mb-4" placeholder="Book overview">
-  <input type="number" min="0" id="quantity" name="quantity" [(ngModel)]="changingData.Quantity"
-    class="form-control mb-4" placeholder="Quantity">
-  <input type="number" min="0" id="price" name="price" [(ngModel)]="changingData.Price" class="form-control mb-4"
-    placeholder="Price">
-  <button class="btn btn-info" type="submit"
-    *ngIf="changingData.ISBN && changingData.BookCover && changingData.BookTitle && changingData.BookAuthor && changingData.BookGenreID != 'none' && changingData.PublicationYear && changingData.BookOverview && changingData.Quantity >= 0 && changingData.Price">Update</button>
-  <button class="btn btn-info reset" (click)="resetUpdateForm(); visibleForm = ''"
-    [ngClass]="{'reset1': !(changingData.ISBN && changingData.BookCover && changingData.BookTitle && changingData.BookAuthor && changingData.BookGenreID != 'none' && changingData.PublicationYear && changingData.BookOverview && changingData.Quantity >= 0 && changingData.Price)}"><i
-      class="fa fa-times"></i></button>
+  <input
+    type="number"
+    min="1900"
+    max="2020"
+    id="publicationyear"
+    name="publicationyear"
+    [(ngModel)]="changingData.PublicationYear"
+    class="form-control mb-4"
+    placeholder="Book author"
+  />
+  <input
+    type="text"
+    id="bookoverview"
+    name="bookoverview"
+    [(ngModel)]="changingData.BookOverview"
+    class="form-control mb-4"
+    placeholder="Book overview"
+  />
+  <input
+    type="number"
+    min="0"
+    id="quantity"
+    name="quantity"
+    [(ngModel)]="changingData.Quantity"
+    class="form-control mb-4"
+    placeholder="Quantity"
+  />
+  <input
+    type="number"
+    min="0"
+    id="price"
+    name="price"
+    [(ngModel)]="changingData.Price"
+    class="form-control mb-4"
+    placeholder="Price"
+  />
+  <button
+    class="btn btn-info"
+    type="submit"
+    *ngIf="
+      changingData.ISBN &&
+      changingData.BookCover &&
+      changingData.BookTitle &&
+      changingData.BookAuthor &&
+      changingData.BookGenreID != 'none' &&
+      changingData.PublicationYear &&
+      changingData.BookOverview &&
+      changingData.Quantity >= 0 &&
+      changingData.Price
+    "
+  >
+    Update
+  </button>
+  <button
+    class="btn btn-info reset"
+    (click)="resetUpdateForm(); visibleForm = ''"
+    [ngClass]="{
+      reset1: !(
+        changingData.ISBN &&
+        changingData.BookCover &&
+        changingData.BookTitle &&
+        changingData.BookAuthor &&
+        changingData.BookGenreID != 'none' &&
+        changingData.PublicationYear &&
+        changingData.BookOverview &&
+        changingData.Quantity >= 0 &&
+        changingData.Price
+      )
+    }"
+  >
+    <i class="fa fa-times"></i>
+  </button>
 </form>
 
 <!-- Title & Add new book button. -->
@@ -112,9 +328,13 @@ uBooks
       <h2>Books <b>Details</b></h2>
     </div>
     <div class="col-sm-4">
-      <button type="button" class="btn btn-info font-weight-light add-new" (click)="visibleForm = 'create'"><i
-          class="fa fa-plus"></i> Add
-        New</button>
+      <button
+        type="button"
+        class="btn btn-info font-weight-light add-new"
+        (click)="visibleForm = 'create'"
+      >
+        <i class="fa fa-plus"></i> Add New
+      </button>
     </div>
   </div>
 </div>
@@ -124,51 +344,84 @@ uBooks
   <!-- Getting each record with a loop. -->
   <div class="card shopping-cart" *ngFor="let book of books">
     <!-- Header. -->
-    <div class="card-header bg-dark text-light font-weight-light"
-      style="background:linear-gradient(to bottom,#ff3300,#f7b733);height:50px;border:none;">
+    <div
+      class="card-header bg-dark text-light font-weight-light"
+      style="background:linear-gradient(to bottom,#ff3300,#f7b733);height:50px;border:none;"
+    >
       <div class="clearfix"></div>
     </div>
     <!-- Book part. -->
     <div class="card-body">
       <div class="row">
         <div class="col-12 col-sm-12 col-md-4 text-center">
-          <img class="img-responsive" src={{book.BookCover}} alt="preview" width="250" height="400">
+          <img
+            class="img-responsive"
+            src="{{ book.BookCover }}"
+            alt="preview"
+            width="250"
+            height="400"
+          />
         </div>
         <div class="col-12 text-sm-center col-sm-12 text-md-left col-md-6">
-          <h4 class="product-name" style="width: 745px;"><strong>{{book.BookTitle}} <span
-                style="font-weight: normal;">by</span>
-              {{book.BookAuthor}}</strong>
+          <h4 class="product-name" style="width: 745px;">
+            <strong
+              >{{ book.BookTitle }}
+              <span style="font-weight: normal;">by</span>
+              {{ book.BookAuthor }}</strong
+            >
           </h4>
           <p style="display: none;">
-            <small><strong>Book ID:</strong> {{book.BookID}}</small>
+            <small><strong>Book ID:</strong> {{ book.BookID }}</small>
           </p>
-          <p style="margin: 0; text-align: justify; font-size: 20px; width: 675px;">
-            <small><strong>ISBN:</strong> {{book.ISBN}}</small>
+          <p
+            style="margin: 0; text-align: justify; font-size: 20px; width: 675px;"
+          >
+            <small><strong>ISBN:</strong> {{ book.ISBN }}</small>
           </p>
-          <p style="margin: 0; text-align: justify; font-size: 20px; width: 675px;">
-            <small><strong>Genre:</strong> {{book.BookGenre}}</small>
+          <p
+            style="margin: 0; text-align: justify; font-size: 20px; width: 675px;"
+          >
+            <small><strong>Genre:</strong> {{ book.BookGenre }}</small>
           </p>
-          <p style="margin: 0; text-align: justify; font-size: 20px; width: 675px;">
-            <small><strong>Year of publication:</strong> {{book.PublicationYear}}</small>
+          <p
+            style="margin: 0; text-align: justify; font-size: 20px; width: 675px;"
+          >
+            <small
+              ><strong>Year of publication:</strong>
+              {{ book.PublicationYear }}</small
+            >
           </p>
-          <p style="margin: 0; text-align: justify; font-size: 20px; width: 675px;">
-            <small><strong>Overview:</strong> {{book.BookOverview}}</small>
+          <p
+            style="margin: 0; text-align: justify; font-size: 20px; width: 675px;"
+          >
+            <small><strong>Overview:</strong> {{ book.BookOverview }}</small>
           </p>
-          <p style="margin: 0; text-align: justify; font-size: 20px; width: 675px;">
-            <small><strong>Quantity in stock:</strong> {{book.Quantity}}</small>
+          <p
+            style="margin: 0; text-align: justify; font-size: 20px; width: 675px;"
+          >
+            <small
+              ><strong>Quantity in stock:</strong> {{ book.Quantity }}</small
+            >
           </p>
-          <p style="margin: 0; text-align: justify; font-size: 20px; width: 675px;">
-            <small><strong>Price:</strong> ${{book.Price}}</small>
+          <p
+            style="margin: 0; text-align: justify; font-size: 20px; width: 675px;"
+          >
+            <small><strong>Price:</strong> ${{ book.Price }}</small>
           </p>
         </div>
       </div>
-      <hr>
+      <hr />
       <!-- Buttons for data processing. -->
       <div class="pull-right" style="margin: 10px">
         <div class="pull-right " style="margin: 5px;">
-          <a title="Edit" (click)="getBookForUpdate(book.BookID); visibleForm = 'update'"><i
-              class="fa fa-pencil"></i></a>
-          <a title="Delete" (click)="deleteBook(book.BookID);"><i class="fa fa-trash"></i></a>
+          <a
+            title="Edit"
+            (click)="getBookForUpdate(book.BookID); visibleForm = 'update'"
+            ><i class="fa fa-pencil"></i
+          ></a>
+          <a title="Delete" (click)="deleteBook(book.BookID)"
+            ><i class="fa fa-trash"></i
+          ></a>
         </div>
       </div>
     </div>

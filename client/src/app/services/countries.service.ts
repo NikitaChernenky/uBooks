@@ -1,3 +1,14 @@
+/*
+Mykyta Chernenky
+200367631
+CS 476 - Software Development
+uBooks
+
+[Service] Countries
+
+This service was made to perform various operations with Countries List
+ */
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';

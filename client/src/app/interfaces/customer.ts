@@ -3,6 +3,8 @@ Mykyta Chernenky
 200367631
 CS 476 - Software Development
 uBooks
+
+Customer class 
 */
 
 //PROTOTYPE Design Patter - Part 2

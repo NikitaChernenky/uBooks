@@ -1,3 +1,13 @@
+/*
+Mykyta Chernenky
+200367631
+CS 476 - Software Development
+uBooks
+
+[Service] Cart
+This service was made to control the cart component
+ */
+
 import { Injectable } from '@angular/core';
 
 @Injectable({

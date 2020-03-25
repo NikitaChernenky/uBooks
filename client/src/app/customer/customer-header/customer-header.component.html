@@ -10,32 +10,60 @@ uBooks
 <!-- Customer's navbar. -->
 <header>
   <nav class="navbar navbar-expand-sm navbar-dark nav-bk8">
-    <img src="assets/img/logo.png" alt="logo" class="navbar-brand logo">
+    <img src="assets/img/logo.png" alt="logo" class="navbar-brand logo" />
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
-        <a class="nav-link font-weight-light" [ngClass]="{'active': (active == 'books')}" routerLink="/customer/books"
-          (click)="setActiveLink('books')">Buy Books</a>
+        <a
+          class="nav-link font-weight-light"
+          [ngClass]="{ active: active == 'books' }"
+          routerLink="/customer/books"
+          (click)="setActiveLink('books')"
+          >Buy Books</a
+        >
       </li>
       <li class="nav-item">
-        <a class="nav-link font-weight-light" [ngClass]="{'active': (active == 'cart')}" routerLink="/customer/cart"
-          (click)="setActiveLink('cart');">Cart <span class="badge badge-light">{{cartquantity}}</span></a>
+        <a
+          class="nav-link font-weight-light"
+          [ngClass]="{ active: active == 'cart' }"
+          routerLink="/customer/cart"
+          (click)="setActiveLink('cart')"
+          >Cart <span class="badge badge-light">{{ cartquantity }}</span></a
+        >
       </li>
       <li class="nav-item">
-        <a class="nav-link font-weight-light" [ngClass]="{'active': (active == 'mybooks')}"
-          routerLink="/customer/mybooks" (click)="setActiveLink('mybooks')">Sell Books</a>
+        <a
+          class="nav-link font-weight-light"
+          [ngClass]="{ active: active == 'mybooks' }"
+          routerLink="/customer/mybooks"
+          (click)="setActiveLink('mybooks')"
+          >Sell Books</a
+        >
       </li>
       <li class="nav-item">
-        <a class="nav-link font-weight-light" [ngClass]="{'active': (active == 'orders')}" routerLink="/customer/orders"
-          (click)="setActiveLink('orders')">Orders</a>
+        <a
+          class="nav-link font-weight-light"
+          [ngClass]="{ active: active == 'orders' }"
+          routerLink="/customer/orders"
+          (click)="setActiveLink('orders')"
+          >Orders</a
+        >
       </li>
       <li class="nav-item">
-        <a class="nav-link font-weight-light" [ngClass]="{'active': (active == 'account')}"
-          routerLink="/customer/account" (click)="setActiveLink('account')">Hi,
-          {{currentUser.Name}}!</a>
+        <a
+          class="nav-link font-weight-light"
+          [ngClass]="{ active: active == 'account' }"
+          routerLink="/customer/account"
+          (click)="setActiveLink('account')"
+          >Hi, {{ currentUser.Name }}!</a
+        >
       </li>
       <li class="nav-item">
-        <a class="nav-link font-weight-light" routerLink="/sign-in" (click)="signOut(); setActiveLink('books');">Sign
-          out</a>
+        <a
+          class="nav-link font-weight-light"
+          routerLink="/sign-in"
+          (click)="signOut(); setActiveLink('books')"
+          >Sign out</a
+        >
       </li>
     </ul>
   </nav>

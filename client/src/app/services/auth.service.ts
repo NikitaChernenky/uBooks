@@ -1,3 +1,13 @@
+/*
+Mykyta Chernenky
+200367631
+CS 476 - Software Development
+uBooks
+
+[Service] Auth
+This service was made to accomplish correct authorization process
+ */
+
 import { Injectable } from '@angular/core';
 
 @Injectable({

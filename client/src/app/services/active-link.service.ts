@@ -5,7 +5,7 @@ CS 476 - Software Development
 uBooks
 
 [Service] Active Link
-This service was made to underline the currently opened apge in the dashboard
+This service was made to underline the currently opened page in the dashboard
  */
 import { Injectable } from '@angular/core';
 
