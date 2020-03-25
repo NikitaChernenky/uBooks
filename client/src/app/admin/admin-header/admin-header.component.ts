@@ -1,3 +1,12 @@
+/*
+Mykyta Chernenky
+200367631
+CS 476 - Software Development
+uBooks
+
+Admin Dashboard Page Header - TypeScript
+*/
+
 /* Import all libraries and services. */
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';

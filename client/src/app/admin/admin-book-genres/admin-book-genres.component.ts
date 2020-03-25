@@ -1,3 +1,12 @@
+/* 
+Mykyta Chernenky
+200367631
+CS 476 - Software Development
+uBooks
+
+Book Genre Table -  Typescript
+*/
+
 /* Import all libraries and services. */
 import { Component, OnInit } from '@angular/core';
 import { BookGenresService } from 'src/app/services/book-genres.service';

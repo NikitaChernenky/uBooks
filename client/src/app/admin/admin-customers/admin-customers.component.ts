@@ -1,3 +1,11 @@
+/*
+Mykyta Chernenky
+200367631
+CS 476 - Software Development
+uBooks
+
+Customers Table -  TypeScript
+*/
 /* Import all modules, libraries and services. */
 import { Component, OnInit } from '@angular/core';
 import { CustomersService } from 'src/app/services/customers.service';

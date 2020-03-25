@@ -1,3 +1,12 @@
+/*
+Mykyta Chernenky
+200367631
+CS 476 - Software Development
+uBooks
+
+Admin Order Management Tool - TypeScript
+*/
+
 /* Import all modules, libraries and services. */
 import { Component, OnInit } from '@angular/core';
 import { OrdersService } from 'src/app/services/orders.service';

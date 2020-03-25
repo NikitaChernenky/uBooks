@@ -1,3 +1,13 @@
+/*
+Mykyta Chernenky
+200367631
+CS 476 - Software Development
+uBooks
+
+Admin Table TypeScript file
+*/
+
+
 /* Import all modules, libraries and services. */
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { AdminsService } from 'src/app/services/admins.service';
@@ -23,7 +33,7 @@ export class AdminAdminsComponent implements OnInit {
 
   /* Using services. */
   constructor(private adminsService: AdminsService, private customersService: CustomersService, private authService: AuthService, private renderer: Renderer2) {
-    this.renderer.setStyle(document.body, 'background', 'white'); //apply background for the entire component
+    this.renderer.setStyle(document.body, 'background', 'white'); //apply white background for the entire component
    }
 
   /* Perform component initialization. */
@@ -33,7 +43,7 @@ export class AdminAdminsComponent implements OnInit {
 
   /* Load data to variable using admin users service. */
   fetchData() {
-    /* Load all data to variable using admins' service. */
+    /* Load all data to variable using admins service. */
     this.adminsService.getAllAdmins().subscribe(data => {
       this.admins = data;
     },
