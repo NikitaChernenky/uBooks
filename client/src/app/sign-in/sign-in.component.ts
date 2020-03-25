@@ -1,3 +1,12 @@
+/*
+Mykyta Chernenky
+200367631
+CS 476 - Software Development
+uBooks
+
+[Home] Sign In Page - TypeScript
+ */
+
 /* Import all libraries and services. */
 import { Component, OnInit, Renderer2 } from "@angular/core";
 import { AdminsService } from "../services/admins.service";

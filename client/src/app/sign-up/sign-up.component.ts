@@ -1,3 +1,11 @@
+/*
+Mykyta Chernenky
+200367631
+CS 476 - Software Development
+uBooks
+
+[Home] Sign Up Page - TypeScript
+ */
 /* Import all modules, libraries and services. */
 import { Component, OnInit, Renderer2 } from "@angular/core";
 import { AdminsService } from "../services/admins.service";
@@ -43,7 +51,7 @@ export class SignUpComponent implements OnInit {
   /* Perform component initialization. */
   ngOnInit() {
     this.fetchData();
-    /* Reset drop-down list with countries. */
+    /* Reset all fields. */
     this.data.CountryID = "none";
     this.data.Name = "";
     this.data.Surname = "";
@@ -98,8 +106,8 @@ export class SignUpComponent implements OnInit {
       //validate last name
       this.incorrectName = true;
     }
-
-    if (this.data.CountryID == "none") {
+    /* Check flags */
+    if (this.data.CountryID == "none") { 
       this.incorrectCountry = true;
     }
     if (!this.validatePhoneNumber(this.data.PhoneNumber)) {
@@ -144,30 +152,29 @@ export class SignUpComponent implements OnInit {
     }
   }
 
-  /* Email address validation. */
+  /* Email address validation regular expression */
   validateEmail(email) {
     var emailRegEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return emailRegEx.test(String(email).toLowerCase());
   }
 
-  validatePassword(password) {
-    //password validatitor
+  validatePassword(password) { //password validatitor
     var passwordRegEx = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/; //regular expression for password
     return passwordRegEx.test(String(password));
   }
 
-  validateName(name) {
+  validateName(name) { //name validation regular expression 
     console.log("here");
     var nameRegEx = /[a-zA-z]{1,30}/; //name has to be at least 1 character long and less than 30 characters long
     return nameRegEx.test(String(name));
   }
 
-  validatePhoneNumber(phoneNumber) {
+  validatePhoneNumber(phoneNumber) { //phone nu,ber validation regular expression
     var phoneRegEx = /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/; //matches various phone number entry formats
     return phoneRegEx.test(String(phoneNumber));
   }
 
-  resetValidationFlags() {
+  resetValidationFlags() { //reset wrong input flags
     this.incorrectName = false;
     this.incorrectPassword = false;
     this.incorrectEmail = false;
