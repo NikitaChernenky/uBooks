@@ -34,8 +34,8 @@ export class AdminAdminsComponent implements OnInit {
   /* Load data to variable using admin users service. */
   fetchData() {
     /* Load all data to variable using admins' service. */
-    this.adminsService.getAllAdmins().subscribe(admin => {
-      this.admins = admin;
+    this.adminsService.getAllAdmins().subscribe(data => {
+      this.admins = data;
     },
       err => {
         console.log(err);
