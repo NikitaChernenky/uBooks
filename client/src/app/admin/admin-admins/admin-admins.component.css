@@ -5,6 +5,11 @@ CS 476 - Software Development
 uBooks
 */
 /* Table of Admins - CSS file */
+
+.hidetext {
+   -webkit-text-security: disc; 
+   /* Default */ }
+
 .table-dark {
   color: #fff;
   background: linear-gradient(to top, #ff7b00, #ffc145);
