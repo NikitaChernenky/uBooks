@@ -40,13 +40,13 @@ Customers Table -  HTML
 <!-- Form for updating existing customer. -->
 <form autocomplete="off" class="update-form text-center border border-light p-5"
   (ngSubmit)="updateCustomer(); resetUpdateForm();" name="update-form" *ngIf="visibleForm == 'update'">
-  <h2>Update admin</h2>
+  <h2>Update Customer</h2>
   <input type="text" id="name" name="name" [(ngModel)]="changingData.Name" class="form-control mb-4" placeholder="Name">
   <input type="text" id="surname" name="surname" [(ngModel)]="changingData.Surname" class="form-control mb-4"
     placeholder="Surname">
   <input type="text" id="email" name="email" [(ngModel)]="changingData.Email" class="form-control mb-4"
     placeholder="Email: example@mail.com">
-  <input type="text" id="password" name="password" [(ngModel)]="changingData.Password" class="form-control mb-4"
+  <input type="password" id="password" name="password" [(ngModel)]="changingData.Password" class="form-control mb-4"
     placeholder="Password">
   <select class="custom-select mb-4" [(ngModel)]="changingData.CountryID" name="selectedCountry">
     <option selected disabled value="none">Select country...</option>
@@ -97,7 +97,7 @@ Customers Table -  HTML
       <td>{{customer.Name}}</td>
       <td>{{customer.Surname}}</td>
       <td>{{customer.Email}}</td>
-      <td>{{customer.Password}}</td>
+      <td class="hidetext">{{customer.Password}}</td>
       <td>{{customer.CountryName}}</td>
       <td>{{customer.CountryCode}}{{customer.PhoneNumber}}</td>
       <td *ngIf="customer.CardNumber != '' && customer.CardNumber != null">
